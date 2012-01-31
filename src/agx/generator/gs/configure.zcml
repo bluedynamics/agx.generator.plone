@@ -1,8 +1,7 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:agx="http://namespaces.zope.org/agx">
 
-  <include package="agx.core" />
-  <include package="agx.transform.uml2fs" />
+  <include package="agx.generator.zca" />
   
   <utility
     name="agx.generator.gs.profilelocation"
