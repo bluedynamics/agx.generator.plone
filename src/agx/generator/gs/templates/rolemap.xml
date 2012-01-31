@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<rolemap>
+  <roles>
+<dtml-in "extraRoles">
+    <role name="<dtml-var "_['sequence-item']">"/>
+</dtml-in>
+<!-- ##code-section roles -->
+<!-- ##/code-section roles -->
+  </roles>
+  <permissions>
+<!-- ##code-section permissions -->
+<!-- ##/code-section permissions -->
+  </permissions>
+</rolemap>
