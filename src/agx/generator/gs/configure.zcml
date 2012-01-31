@@ -1,0 +1,13 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:agx="http://namespaces.zope.org/agx">
+
+  <include package="agx.core" />
+  <include package="agx.transform.uml2fs" />
+  
+  <utility
+    name="agx.generator.gs.profilelocation"
+	provides="agx.core.interfaces.IProfileLocation"
+	component=".profiles.ProfileLocation"
+  />
+
+</configure>

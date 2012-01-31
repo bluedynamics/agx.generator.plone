@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="__CiAUUwhEeGTE4gBrh7aXw" name="gs" metaclassReference="_zRdwkEwiEeGTE4gBrh7aXw">
+  <elementImport xmi:id="_zRdwkEwiEeGTE4gBrh7aXw" alias="Class">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_1FcPoEwiEeGTE4gBrh7aXw" name="content_type">
+    <ownedAttribute xmi:id="_-dj1kEwiEeGTE4gBrh7aXw" name="base_Class" association="_-dkcoEwiEeGTE4gBrh7aXw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_5c5YEEwiEeGTE4gBrh7aXw" name="view">
+    <ownedAttribute xmi:id="__M0IQEwiEeGTE4gBrh7aXw" name="base_Class" association="__M0IQUwiEeGTE4gBrh7aXw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_-dkcoEwiEeGTE4gBrh7aXw" name="E_content_type_Class0" memberEnd="_-dkcoUwiEeGTE4gBrh7aXw _-dj1kEwiEeGTE4gBrh7aXw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_-dkcoUwiEeGTE4gBrh7aXw" name="extension_content_type" type="_1FcPoEwiEeGTE4gBrh7aXw" aggregation="composite" association="_-dkcoEwiEeGTE4gBrh7aXw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="__M0IQUwiEeGTE4gBrh7aXw" name="E_view_Class0" memberEnd="__M0IQkwiEeGTE4gBrh7aXw __M0IQEwiEeGTE4gBrh7aXw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__M0IQkwiEeGTE4gBrh7aXw" name="extension_view" type="_5c5YEEwiEeGTE4gBrh7aXw" aggregation="composite" association="__M0IQUwiEeGTE4gBrh7aXw"/>
+  </packagedElement>
+</uml:Profile>
