@@ -1,3 +1,4 @@
 src/agx.generator.gs.egg-info/
 *.pyc
 *.pyo
+src/agx/generator/gs/tests/data/agx.generator.gs-sample/
