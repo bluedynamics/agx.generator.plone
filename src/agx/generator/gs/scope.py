@@ -2,6 +2,7 @@ from agx.core import (
     Scope,
     registerScope,
 )
+from node.ext.uml.interfaces import IDependency
 
 
 class ProfileScope(Scope):
@@ -25,3 +26,4 @@ class DynamicViewScope(Scope):
 registerScope('gsprofile', 'uml2fs', None, ProfileScope)
 registerScope('gscontenttype', 'uml2fs', None, ContentTypeScope)
 registerScope('gsdynamicview', 'uml2fs', None, DynamicViewScope)
+registerScope('gsdependency', 'uml2fs', [IDependency], Scope)

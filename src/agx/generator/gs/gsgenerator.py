@@ -6,6 +6,7 @@ from node.ext.zcml import (
 )
 from agx.core import handler
 from agx.core.util import read_target_node
+from agx.generator.pyegg.utils import eggsource
 from agx.generator.gs.scope import (
     ProfileScope,
     ContentTypeScope,
@@ -183,18 +184,11 @@ def gsprofilejsregistry(self, source, target):
 
 
 @handler('gsprofiletypes', 'uml2fs', 'hierarchygenerator',
-         'gscontenttype', order=120)
+         'gscontenttype', order=110)
 def gsprofiletypes(self, source, target):
-    """Create jsregistry.xml
+    """Create or extend types.xml and corresponding TYPENAME.xml.
     """
-    source_node = source
-    while True:
-        if source_node.stereotype('pyegg:pyegg'):
-            break
-        source_node = source_node.parent
-        if not source_node:
-            raise RuntimeError(u"Module mapping to python egg not found")
-    package = read_target_node(source_node, target.target)
+    package = read_target_node(eggsource(source), target.target)
     default = package['profiles']['default']
     
     # create types foder if not exists
@@ -284,3 +278,19 @@ def gsprofiletypes(self, source, target):
         'visible': 'True',
         'permissions': ['View'],
     })
+
+
+@handler('gsdynamicview', 'uml2fs', 'semanticsgenerator',
+         'gsdependency', order=100)
+def gsdynamicview(self, source, target):
+    """Add view method to FTI's of all dependent content types.
+    """
+    if not source.supplier.stereotype('gs:content_type') \
+      or not source.client.stereotype('gs:dynamic_view'):
+        return
+    content_type = source.supplier
+    package = read_target_node(eggsource(content_type), target.target)
+    default = package['profiles']['default']
+    name = '%s.xml' % content_type.name
+    type_xml = default['types'][name]
+    type_xml.params['ctype']['suppl_views'].append(source.client.name)
