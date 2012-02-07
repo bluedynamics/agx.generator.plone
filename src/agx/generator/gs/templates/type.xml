@@ -2,21 +2,14 @@
 <object name="<dtml-var "ctype['name']">"
         meta_type="<dtml-var "ctype['meta_type']">"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-        i18n:domain="plone">
+        i18n:domain="<dtml-var "ctype['i18n_domain']">">
 
- <property name="title" i18n:translate=""><dtml-var "ctype['type_name']"></property>
- <property name="description" i18n:translate=""><dtml-var "ctype['type_description']"></property>
-
-<dtml-if "ctype['content_icon']">
- <property name="icon_expr">string:${portal_url}/<dtml-var "ctype['content_icon']"></property>
-</dtml-if>
-<dtml-if "not ctype['content_icon']">
- <property name="icon_expr"></property>
-</dtml-if>
- <property name="content_meta_type"><dtml-var "ctype['content_meta_type']"></property>
- <property name="product"><dtml-var "ctype['product_name']"></property>
- <property name="factory"><dtml-var "ctype['factory']"></property>
- <property name="immediate_view"><dtml-var "ctype['immediate_view']"></property>
+ <!-- Basic metadata -->
+ <property name="title" i18n:translate=""><dtml-var "ctype['title']"></property>
+ <property name="description" i18n:translate=""><dtml-var "ctype['description']"></property>
+ <property name="content_icon"><dtml-var "ctype['content_icon']"></property>
+ 
+ <property name="allow_discussion"><dtml-var "ctype['allow_discussion']"></property>
  <property name="global_allow"><dtml-var "ctype['global_allow']"></property>
  <property name="filter_content_types"><dtml-var "ctype['filter_content_types']"></property>
  <property name="allowed_content_types">
@@ -24,29 +17,45 @@
    <element value="<dtml-var "_['sequence-item']">"/>
 </dtml-in>
  </property>
- <property name="allow_discussion"><dtml-var "ctype['allow_discussion']"></property>
-<dtml-if "ctype['suppl_views']">
+ 
+ <!-- schema interface -->
+ <property name="schema"><dtml-var "ctype['schema']"></property> 
+ 
+ <!-- class used for content items -->
+ <property name="klass"><dtml-var "ctype['klass']"></property>
+ 
+ <!-- add permission -->
+ <property name="add_permission"><dtml-var "ctype['add_permission']"></property>
+ 
+ <!-- enabled behaviors -->
+ <property name="behaviors">
+<dtml-in "ctype['behaviors']">
+   <element value="<dtml-var "_['sequence-item']">"/>
+</dtml-in>
+ </property>
+ 
+ <!-- View information -->
  <property name="default_view"><dtml-var "ctype['default_view']"></property>
+ <property name="default_view_fallback"><dtml-var "ctype['default_view_fallback']"></property>
  <property name="view_methods">
-<dtml-in "ctype['suppl_views']">
+<dtml-in "ctype['view_methods']">
   <element value="<dtml-var "_['sequence-item']">"/>
 </dtml-in>
  </property>
-</dtml-if>
- <property name="default_view_fallback">False</property>
-<dtml-in "[k for k in ctype.keys() if k.startswith('fti:')]">
- <property name="<dtml-var "_['sequence-item'][4:]">"><dtml-var "ctype[_['sequence-item']]"></property>
-</dtml-in>
-<dtml-in "ctype['type_aliases']">
+ 
+ <!-- Method aliases -->
+<dtml-in "ctype['aliases']">
  <alias from="<dtml-var "_['sequence-item']['from']">" to="<dtml-var "_['sequence-item']['to']">"/>
 </dtml-in>
-<dtml-in "ctype['type_actions']">
- <action title="<dtml-var "_['sequence-item']['name']">"
-         <dtml-if "_['sequence-item']['name'] not in ('Edit', 'View')">i18n:attributes="title"
-         </dtml-if>action_id="<dtml-var "_['sequence-item']['id']">"
+ 
+ <!-- Actions -->
+<dtml-in "ctype['actions']">
+ <action title="<dtml-var "_['sequence-item']['title']">"
+         <dtml-if "_['sequence-item']['title'] not in ('Edit', 'View')">i18n:attributes="title"
+         </dtml-if>action_id="<dtml-var "_['sequence-item']['action_id']">"
          category="<dtml-var "_['sequence-item']['category']">"
-         condition_expr="<dtml-var "_['sequence-item']['condition']">"
-         url_expr="<dtml-var "_['sequence-item']['action']">"
+         condition_expr="<dtml-var "_['sequence-item']['condition_expr']">"
+         url_expr="<dtml-var "_['sequence-item']['url_expr']">"
          visible="<dtml-var "_['sequence-item']['visible']">">
 <dtml-in "_['sequence-item']['permissions']">
   <permission value="<dtml-var "_['sequence-item']">"/>

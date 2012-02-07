@@ -6,7 +6,10 @@ from node.ext.zcml import (
 )
 from agx.core import handler
 from agx.core.util import read_target_node
-from agx.generator.pyegg.utils import eggsource
+from agx.generator.pyegg.utils import (
+    egg_source,
+    class_full_name,
+)
 from agx.generator.gs.scope import (
     ProfileScope,
     ContentTypeScope,
@@ -183,12 +186,13 @@ def gsprofilejsregistry(self, source, target):
     }]
 
 
-@handler('gsprofiletypes', 'uml2fs', 'hierarchygenerator',
-         'gscontenttype', order=110)
+@handler('gsprofiletypes', 'uml2fs', 'connectorgenerator',
+         'gscontenttype', order=100)
 def gsprofiletypes(self, source, target):
     """Create or extend types.xml and corresponding TYPENAME.xml.
     """
-    package = read_target_node(eggsource(source), target.target)
+    egg = egg_source(source)
+    package = read_target_node(egg, target.target)
     default = package['profiles']['default']
     
     # create types foder if not exists
@@ -226,55 +230,75 @@ def gsprofiletypes(self, source, target):
     # set template params
     # FTI properties can be added by prefixing param key with 'fti:'
     # XXX: calculate from model
+    
+    class_ = read_target_node(source, target.target)
+    full_name = class_full_name(class_)
+    
+    content_icon = '++resource++%s/%s_icon.png' % (egg.name, source.name)
+    
     type.params['ctype'] = dict()
-    type.params['ctype']['name'] = source.name
-    type.params['ctype']['meta_type'] = source.name
-    type.params['ctype']['type_name'] = source.name
-    type.params['ctype']['type_description'] = source.name
-    type.params['ctype']['content_icon'] = 'page_icon.gif'
-    type.params['ctype']['content_meta_type'] = source.name
-    type.params['ctype']['product_name'] = 'foo.bar.baz'
-    type.params['ctype']['factory'] = 'blah'
+    
+    # general
+    type.params['ctype']['name'] = full_name
+    type.params['ctype']['meta_type'] = 'Dexterity FTI'
+    type.params['ctype']['i18n_domain'] = egg.name
+    
+    # basic metadata
+    type.params['ctype']['title'] = source.name
+    type.params['ctype']['description'] = source.name
+    type.params['ctype']['content_icon'] = content_icon
+    type.params['ctype']['allow_discussion'] = 'False'
     type.params['ctype']['global_allow'] = 'True'
     type.params['ctype']['filter_content_types'] = 'True'
     type.params['ctype']['allowed_content_types'] = list()
-    type.params['ctype']['allow_discussion'] = 'False'
-    type.params['ctype']['immediate_view'] = 'view'
-    type.params['ctype']['suppl_views'] = list()
+    
+    # dexterity specific
+    type.params['ctype']['schema'] = 'collective.soundcloud.types.alias.IAlias'
+    type.params['ctype']['klass'] = 'plone.dexterity.content.Item'
+    type.params['ctype']['add_permission'] = 'cmf.AddPortalContent'
+    type.params['ctype']['behaviors'] = list()
+    
+    # View information
+    type.params['ctype']['view_methods'] = ['view']
     type.params['ctype']['default_view'] = 'view'
-    type.params['ctype']['type_aliases'] = list()
-    type.params['ctype']['type_aliases'].append({
+    type.params['ctype']['default_view_fallback'] = 'False'
+    
+    # Method aliases
+    type.params['ctype']['aliases'] = list()
+    type.params['ctype']['aliases'].append({
         'from': '(Default)',
         'to': '(dynamic view)',
     })
-    type.params['ctype']['type_aliases'].append({
+    type.params['ctype']['aliases'].append({
         'from': 'view',
         'to': '(selected layout)',
     })
-    type.params['ctype']['type_aliases'].append({
+    type.params['ctype']['aliases'].append({
         'from': 'edit',
-        'to': 'base_edit',
+        'to': '@@edit',
     })
-    type.params['ctype']['type_aliases'].append({
+    type.params['ctype']['aliases'].append({
         'from': 'sharing',
         'to': '@@sharing',
     })
-    type.params['ctype']['type_actions'] = list()
-    type.params['ctype']['type_actions'].append({
-        'id': 'edit',
-        'name': 'Edit',
+    
+    # Actions
+    type.params['ctype']['actions'] = list()
+    type.params['ctype']['actions'].append({
+        'action_id': 'edit',
+        'title': 'Edit',
         'category': 'object',
-        'condition': 'not:object/@@plone_lock_info/is_locked_for_current_user',
-        'action': 'string:${object_url}/edit',
+        'condition_expr': 'not:object/@@plone_lock_info/is_locked_for_current_user',
+        'url_expr': 'string:${object_url}/edit',
         'visible': 'True',
         'permissions': ['Modify portal content'],
     })
-    type.params['ctype']['type_actions'].append({
-        'id': 'view',
-        'name': 'View',
+    type.params['ctype']['actions'].append({
+        'action_id': 'view',
+        'title': 'View',
         'category': 'object',
-        'condition': 'python:1',
-        'action': 'string:${object_url}/view',
+        'condition_expr': 'python:1',
+        'url_expr': 'string:${object_url}/view',
         'visible': 'True',
         'permissions': ['View'],
     })
@@ -289,8 +313,8 @@ def gsdynamicview(self, source, target):
       or not source.client.stereotype('gs:dynamic_view'):
         return
     content_type = source.supplier
-    package = read_target_node(eggsource(content_type), target.target)
+    package = read_target_node(egg_source(content_type), target.target)
     default = package['profiles']['default']
     name = '%s.xml' % content_type.name
     type_xml = default['types'][name]
-    type_xml.params['ctype']['suppl_views'].append(source.client.name)
+    type_xml.params['ctype']['view_methods'].append(source.client.name)
