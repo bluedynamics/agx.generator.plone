@@ -5,6 +5,7 @@ from node.ext.zcml import (
     SimpleDirective,
 )
 from agx.core import handler
+from agx.core.util import read_target_node
 from agx.generator.gs.scope import (
     ProfileScope,
     ContentTypeScope,
@@ -22,8 +23,6 @@ def gsprofiledirectories(self, source, target):
     # create profiles directory and subdirectories if not exists
     if not 'profiles' in package:
         package['profiles'] = Directory()
-        package['profiles']['default'] = Directory()
-        package['profiles']['uninstall'] = Directory()
     
     # create default profile folder if not exists
     if not 'default' in package['profiles']:
@@ -95,7 +94,7 @@ def gsprofilezcml(self, source, target):
 
 
 @handler('gsprofilemetadata', 'uml2fs', 'hierarchygenerator',
-         'gsprofile', order=120)
+         'gsprofile', order=110)
 def gsprofilemetadata(self, source, target):
     """Create metadata.xml
     """
@@ -121,7 +120,7 @@ def gsprofilemetadata(self, source, target):
 
 
 @handler('gsprofilecssregistry', 'uml2fs', 'hierarchygenerator',
-         'gsprofile', order=130)
+         'gsprofile', order=110)
 def gsprofilecssregistry(self, source, target):
     """Create cssregistry.xml
     """
@@ -154,7 +153,7 @@ def gsprofilecssregistry(self, source, target):
 
 
 @handler('gsprofilejsregistry', 'uml2fs', 'hierarchygenerator',
-         'gsprofile', order=130)
+         'gsprofile', order=110)
 def gsprofilejsregistry(self, source, target):
     """Create jsregistry.xml
     """
@@ -181,3 +180,107 @@ def gsprofilejsregistry(self, source, target):
         'id': 'myfancyscript.js',
         'inline': 'False',
     }]
+
+
+@handler('gsprofiletypes', 'uml2fs', 'hierarchygenerator',
+         'gscontenttype', order=120)
+def gsprofiletypes(self, source, target):
+    """Create jsregistry.xml
+    """
+    source_node = source
+    while True:
+        if source_node.stereotype('pyegg:pyegg'):
+            break
+        source_node = source_node.parent
+        if not source_node:
+            raise RuntimeError(u"Module mapping to python egg not found")
+    package = read_target_node(source_node, target.target)
+    default = package['profiles']['default']
+    
+    # create types foder if not exists
+    if not 'types' in default:
+        default['types'] = Directory()
+    
+    # read or create types.xml
+    if 'types.xml' in default:
+        types = default['types.xml']
+    else:
+        types = default['types.xml'] = DTMLTemplate()
+    
+    # set template and params if not done yet
+    if not types.template:
+        types.template = 'agx.generator.gs:templates/types.xml'
+        types.params['portalTypes'] = list()
+    
+    # add portal type to types.xml
+    types.params['portalTypes'].append({
+        'name': source.name,
+        'meta_type': source.name,
+    })
+    
+    # add TYPENAME.xml to types folder
+    # read or create TYPENAME.xml
+    name = '%s.xml' % source.name
+    if name in default['types']:
+        type = default['types'][name]
+    else:
+        type = default['types'][name] = DTMLTemplate()
+    
+    # set template used for TYPENAME.xml
+    type.template = 'agx.generator.gs:templates/type.xml'
+    
+    # set template params
+    # FTI properties can be added by prefixing param key with 'fti:'
+    # XXX: calculate from model
+    type.params['ctype'] = dict()
+    type.params['ctype']['name'] = source.name
+    type.params['ctype']['meta_type'] = source.name
+    type.params['ctype']['type_name'] = source.name
+    type.params['ctype']['type_description'] = source.name
+    type.params['ctype']['content_icon'] = 'page_icon.gif'
+    type.params['ctype']['content_meta_type'] = source.name
+    type.params['ctype']['product_name'] = 'foo.bar.baz'
+    type.params['ctype']['factory'] = 'blah'
+    type.params['ctype']['global_allow'] = 'True'
+    type.params['ctype']['filter_content_types'] = 'True'
+    type.params['ctype']['allowed_content_types'] = list()
+    type.params['ctype']['allow_discussion'] = 'False'
+    type.params['ctype']['immediate_view'] = 'view'
+    type.params['ctype']['suppl_views'] = list()
+    type.params['ctype']['default_view'] = 'view'
+    type.params['ctype']['type_aliases'] = list()
+    type.params['ctype']['type_aliases'].append({
+        'from': '(Default)',
+        'to': '(dynamic view)',
+    })
+    type.params['ctype']['type_aliases'].append({
+        'from': 'view',
+        'to': '(selected layout)',
+    })
+    type.params['ctype']['type_aliases'].append({
+        'from': 'edit',
+        'to': 'base_edit',
+    })
+    type.params['ctype']['type_aliases'].append({
+        'from': 'sharing',
+        'to': '@@sharing',
+    })
+    type.params['ctype']['type_actions'] = list()
+    type.params['ctype']['type_actions'].append({
+        'id': 'edit',
+        'name': 'Edit',
+        'category': 'object',
+        'condition': 'not:object/@@plone_lock_info/is_locked_for_current_user',
+        'action': 'string:${object_url}/edit',
+        'visible': 'True',
+        'permissions': ['Modify portal content'],
+    })
+    type.params['ctype']['type_actions'].append({
+        'id': 'view',
+        'name': 'View',
+        'category': 'object',
+        'condition': 'python:1',
+        'action': 'string:${object_url}/view',
+        'visible': 'True',
+        'permissions': ['View'],
+    })

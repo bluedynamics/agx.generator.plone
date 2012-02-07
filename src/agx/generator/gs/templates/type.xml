@@ -1,19 +1,16 @@
 <?xml version="1.0"?>
 <object name="<dtml-var "ctype['name']">"
         meta_type="<dtml-var "ctype['meta_type']">"
-        xmlns:i18n="http://xml.zope.org/namespaces/i18n"<dtml-if "target_version >= 3.0">
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="plone">
 
-        i18n:domain="plone"</dtml-if>>
+ <property name="title" i18n:translate=""><dtml-var "ctype['type_name']"></property>
+ <property name="description" i18n:translate=""><dtml-var "ctype['type_description']"></property>
 
- <property name="title"<dtml-if "target_version >= 3.0"> i18n:translate=""</dtml-if>><dtml-var "ctype['type_name']"></property>
- <property name="description"<dtml-if "target_version >= 3.0"> i18n:translate=""</dtml-if>><dtml-var "ctype['type_description']"></property>
-<dtml-if "target_version < 4.0 and ctype['content_icon']">
- <property name="content_icon"><dtml-var "ctype['content_icon']"></property>
-</dtml-if>
-<dtml-if "target_version >= 4.0 and ctype['content_icon']">
+<dtml-if "ctype['content_icon']">
  <property name="icon_expr">string:${portal_url}/<dtml-var "ctype['content_icon']"></property>
 </dtml-if>
-<dtml-if "target_version >= 4.0 and not ctype['content_icon']">
+<dtml-if "not ctype['content_icon']">
  <property name="icon_expr"></property>
 </dtml-if>
  <property name="content_meta_type"><dtml-var "ctype['content_meta_type']"></property>
@@ -45,7 +42,7 @@
 </dtml-in>
 <dtml-in "ctype['type_actions']">
  <action title="<dtml-var "_['sequence-item']['name']">"
-         <dtml-if "target_version >= 3.0 and _['sequence-item']['name'] not in ('Edit', 'View')">i18n:attributes="title"
+         <dtml-if "_['sequence-item']['name'] not in ('Edit', 'View')">i18n:attributes="title"
          </dtml-if>action_id="<dtml-var "_['sequence-item']['id']">"
          category="<dtml-var "_['sequence-item']['category']">"
          condition_expr="<dtml-var "_['sequence-item']['condition']">"
