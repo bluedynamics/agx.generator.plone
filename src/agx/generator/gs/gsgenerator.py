@@ -38,34 +38,8 @@ def gsprofiledirectories(self, source, target):
     package['profiles']['uninstall'].factories['.xml'] = DTMLTemplate
 
 
-@handler('gsprofilemetadata', 'uml2fs', 'hierarchygenerator',
-         'gsprofile', order=110)
-def gsprofilemetadata(self, source, target):
-    """Create metadata.xml
-    """
-    package = target.anchor
-    default = package['profiles']['default']
-    
-    # read or create metadata.xml
-    if 'metadata.xml' in default:
-        metadata = default['metadata.xml']
-    else:
-        metadata = default['metadata.xml'] = DTMLTemplate()
-    
-    # set template used for metadata.xml
-    metadata.template = 'agx.generator.gs:templates/metadata.xml'
-    
-    # set template params
-    # XXX: calculate from model
-    metadata.params['version'] = 1.0
-    metadata.params['description'] = 'Package description'
-    metadata.params['dependencies'] = [
-        'profile-foo.bar:default',
-    ]
-
-
 @handler('gsprofilezcml', 'uml2fs', 'hierarchygenerator',
-         'gsprofile', order=120)
+         'gsprofile', order=110)
 def gsprofilezcml(self, source, target):
     """Create configure.zcml if not exists yet, profiles.zcml and profile
     specific directives.
@@ -118,3 +92,92 @@ def gsprofilezcml(self, source, target):
     
     profile.attrs['directory'] = 'profiles/default'
     profile.attrs['provides'] = 'Products.GenericSetup.interfaces.EXTENSION'
+
+
+@handler('gsprofilemetadata', 'uml2fs', 'hierarchygenerator',
+         'gsprofile', order=120)
+def gsprofilemetadata(self, source, target):
+    """Create metadata.xml
+    """
+    package = target.anchor
+    default = package['profiles']['default']
+    
+    # read or create metadata.xml
+    if 'metadata.xml' in default:
+        metadata = default['metadata.xml']
+    else:
+        metadata = default['metadata.xml'] = DTMLTemplate()
+    
+    # set template used for metadata.xml
+    metadata.template = 'agx.generator.gs:templates/metadata.xml'
+    
+    # set template params
+    # XXX: calculate from model
+    metadata.params['version'] = 1.0
+    metadata.params['description'] = 'Package description'
+    metadata.params['dependencies'] = [
+        'profile-foo.bar:default',
+    ]
+
+
+@handler('gsprofilecssregistry', 'uml2fs', 'hierarchygenerator',
+         'gsprofile', order=130)
+def gsprofilecssregistry(self, source, target):
+    """Create cssregistry.xml
+    """
+    package = target.anchor
+    default = package['profiles']['default']
+    
+    # read or create cssregistry.xml
+    if 'cssregistry.xml' in default:
+        cssregistry = default['cssregistry.xml']
+    else:
+        cssregistry = default['cssregistry.xml'] = DTMLTemplate()
+    
+    # set template used for cssregistry.xml
+    cssregistry.template = 'agx.generator.gs:templates/cssregistry.xml'
+    
+    # set template params
+    # XXX: calculate from model
+    cssregistry.params['css'] = [{                      
+        'title': '',
+        'cacheable': 'True',
+        'compression': 'save',
+        'cookable': 'True',
+        'enabled': '1',
+        'expression': '',
+        'id': 'myfancystyle.css',
+        'media': 'all',
+        'rel': 'stylesheet',
+        'rendering': 'import',    
+    }]
+
+
+@handler('gsprofilejsregistry', 'uml2fs', 'hierarchygenerator',
+         'gsprofile', order=130)
+def gsprofilejsregistry(self, source, target):
+    """Create jsregistry.xml
+    """
+    package = target.anchor
+    default = package['profiles']['default']
+    
+    # read or create jsregistry.xml
+    if 'jsregistry.xml' in default:
+        jsregistry = default['jsregistry.xml']
+    else:
+        jsregistry = default['jsregistry.xml'] = DTMLTemplate()
+    
+    # set template used for jsregistry.xml
+    jsregistry.template = 'agx.generator.gs:templates/jsregistry.xml'
+    
+    # set template params
+    # XXX: calculate from model
+    jsregistry.params['scripts'] = [{
+        'cacheable': 'True',
+        'compression': 'safe',
+        'cookable': 'True',
+        'enabled': 'True',
+        'expression': '',
+        'id': 'myfancyscript.js',
+        'inline': 'False',
+    }]
