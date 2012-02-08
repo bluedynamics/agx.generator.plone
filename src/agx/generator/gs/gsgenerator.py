@@ -8,7 +8,7 @@ from agx.core import handler
 from agx.core.util import read_target_node
 from agx.generator.pyegg.utils import (
     egg_source,
-    class_full_name,
+    class_base_name,
 )
 from agx.generator.gs.scope import (
     ProfileScope,
@@ -90,7 +90,7 @@ def gsprofilezcml(self, source, target):
     
     # set default profile directive attributes
     # XXX: compute from model
-    profile.attrs['title'] = 'Package title'
+    profile.attrs['title'] = 'Install %s' % egg_source(source).name
     profile.attrs['description'] = 'Extension profile for product_name'
     
     profile.attrs['directory'] = 'profiles/default'
@@ -116,7 +116,7 @@ def gsprofilemetadata(self, source, target):
     
     # set template params
     # XXX: calculate from model
-    metadata.params['version'] = 1.0
+    metadata.params['version'] = '1'
     metadata.params['description'] = 'Package description'
     metadata.params['dependencies'] = [
         'profile-foo.bar:default',
@@ -232,7 +232,7 @@ def gsprofiletypes(self, source, target):
     # XXX: calculate from model
     
     class_ = read_target_node(source, target.target)
-    full_name = class_full_name(class_)
+    full_name = '%s.%s' % (class_base_name(class_), class_.classname.lower())
     
     content_icon = '++resource++%s/%s_icon.png' % (egg.name, source.name)
     
