@@ -64,10 +64,11 @@ def gsprofilezcml(self, source, target):
     if 'profiles.zcml' in package:
         profiles = package['profiles.zcml']
     else:
-        profiles = package['profiles.zcml'] = ZCMLFile()
-    
-    # add genericsetup XML namespace
-    profiles.nsmap['genericsetup'] = 'http://namespaces.zope.org/genericsetup'
+        snmap = {
+            None: 'http://namespaces.zope.org/zope',
+            'genericsetup': 'http://namespaces.zope.org/genericsetup',
+        }
+        profiles = package['profiles.zcml'] = ZCMLFile(nsmap=snmap)
     
     # if include Products.GenericSetup missing, add it
     if not profiles.filter(tag='include',
@@ -81,7 +82,8 @@ def gsprofilezcml(self, source, target):
     if not profiles.filter(tag='genericsetup:registerProfile',
                            attr='name',
                            value='default'):
-        profile = SimpleDirective(name='include', parent=profiles)
+        profile = SimpleDirective(name='genericsetup:registerProfile',
+                                  parent=profiles)
         profile.attrs['name'] = 'default'
     else:
         profile = profiles.filter(tag='genericsetup:registerProfile',
