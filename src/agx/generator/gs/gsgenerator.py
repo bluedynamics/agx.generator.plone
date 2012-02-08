@@ -78,25 +78,43 @@ def gsprofilezcml(self, source, target):
         include.attrs['package'] = 'Products.GenericSetup'
         include.attrs['file'] = 'meta.zcml'
     
-    # read or create genericsetup:registerProfile directive for default profile
+    # read or create install profile directive
     if not profiles.filter(tag='genericsetup:registerProfile',
                            attr='name',
                            value='default'):
-        profile = SimpleDirective(name='genericsetup:registerProfile',
+        install = SimpleDirective(name='genericsetup:registerProfile',
                                   parent=profiles)
-        profile.attrs['name'] = 'default'
+        install.attrs['name'] = 'default'
     else:
-        profile = profiles.filter(tag='genericsetup:registerProfile',
+        install = profiles.filter(tag='genericsetup:registerProfile',
                                   attr='name',
                                   value='default')[0]
     
-    # set default profile directive attributes
-    # XXX: compute from model
-    profile.attrs['title'] = 'Install %s' % egg_source(source).name
-    profile.attrs['description'] = 'Extension profile for product_name'
+    egg_name = egg_source(source).name
     
-    profile.attrs['directory'] = 'profiles/default'
-    profile.attrs['provides'] = 'Products.GenericSetup.interfaces.EXTENSION'
+    # set default profile directive attributes
+    install.attrs['title'] = '%s install' % egg_name
+    install.attrs['description'] = 'Install %s in Plone' % egg_name
+    install.attrs['directory'] = 'profiles/default'
+    install.attrs['provides'] = 'Products.GenericSetup.interfaces.EXTENSION'
+    
+    # read or create uninstall profile directive
+    if not profiles.filter(tag='genericsetup:registerProfile',
+                           attr='name',
+                           value='uninstall'):
+        uninstall = SimpleDirective(name='genericsetup:registerProfile',
+                                    parent=profiles)
+        uninstall.attrs['name'] = 'uninstall'
+    else:
+        uninstall = profiles.filter(tag='genericsetup:registerProfile',
+                                  attr='name',
+                                  value='default')[0]
+    
+    # set uninstall profile directive attributes
+    uninstall.attrs['title'] = '%s uninstall' % egg_name
+    uninstall.attrs['description'] = 'Uninstall %s in Plone' % egg_name
+    uninstall.attrs['directory'] = 'profiles/uninstall'
+    uninstall.attrs['provides'] = 'Products.GenericSetup.interfaces.EXTENSION'
 
 
 @handler('gsprofilemetadata', 'uml2fs', 'hierarchygenerator',
