@@ -108,7 +108,7 @@ def gsprofilezcml(self, source, target):
     else:
         uninstall = profiles.filter(tag='genericsetup:registerProfile',
                                   attr='name',
-                                  value='default')[0]
+                                  value='uninstall')[0]
     
     # set uninstall profile directive attributes
     uninstall.attrs['title'] = '%s uninstall' % egg_name
