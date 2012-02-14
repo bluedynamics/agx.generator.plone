@@ -1,4 +1,4 @@
-src/agx.generator.gs.egg-info/
 *.pyc
 *.pyo
-src/agx/generator/gs/tests/data/agx.generator.gs-sample/
+src/agx.generator.plone.egg-info/
+src/agx/generator/plone/tests/data/agx.generator.plone-sample/

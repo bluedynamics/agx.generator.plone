@@ -10,11 +10,6 @@ from agx.generator.pyegg.utils import (
     egg_source,
     class_base_name,
 )
-from agx.generator.gs.scope import (
-    ProfileScope,
-    ContentTypeScope,
-    DynamicViewScope,
-)
 
 
 @handler('gsprofiledirectories', 'uml2fs', 'hierarchygenerator',
@@ -132,7 +127,7 @@ def gsprofilemetadata(self, source, target):
         metadata = default['metadata.xml'] = DTMLTemplate()
     
     # set template used for metadata.xml
-    metadata.template = 'agx.generator.gs:templates/metadata.xml'
+    metadata.template = 'agx.generator.plone:templates/metadata.xml'
     
     # set template params
     # XXX: calculate from model
@@ -158,7 +153,7 @@ def gsprofilecssregistry(self, source, target):
         cssregistry = default['cssregistry.xml'] = DTMLTemplate()
     
     # set template used for cssregistry.xml
-    cssregistry.template = 'agx.generator.gs:templates/cssregistry.xml'
+    cssregistry.template = 'agx.generator.plone:templates/cssregistry.xml'
     
     # set template params
     # XXX: calculate from model
@@ -191,7 +186,7 @@ def gsprofilejsregistry(self, source, target):
         jsregistry = default['jsregistry.xml'] = DTMLTemplate()
     
     # set template used for jsregistry.xml
-    jsregistry.template = 'agx.generator.gs:templates/jsregistry.xml'
+    jsregistry.template = 'agx.generator.plone:templates/jsregistry.xml'
     
     # set template params
     # XXX: calculate from model

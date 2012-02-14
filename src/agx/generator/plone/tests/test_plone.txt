@@ -1,12 +1,12 @@
-Test agx.generator.gs
-=====================
+Test agx.generator.plone
+========================
 
 Setup configuration and emulate main routine.
 ::
 
     >>> from zope.configuration.xmlconfig import XMLConfig
-    >>> import agx.generator.gs.tests
-    >>> XMLConfig('configure.zcml', agx.generator.gs.tests)()
+    >>> import agx.generator.plone.tests
+    >>> XMLConfig('configure.zcml', agx.generator.plone.tests)()
     
     >>> import agx.core
     >>> XMLConfig('configure.zcml', agx.core)()
@@ -14,7 +14,7 @@ Setup configuration and emulate main routine.
     >>> from agx.core.main import parse_options
     
     >>> import os
-    >>> modelpath = os.path.join(datadir, 'agx.generator.gs-sample.uml')
+    >>> modelpath = os.path.join(datadir, 'agx.generator.plone-sample.uml')
     
     >>> import pkg_resources
     >>> subpath = 'profiles/pyegg.profile.uml'
@@ -25,14 +25,14 @@ Setup configuration and emulate main routine.
     >>> zcaprofilepath = \
     ...     pkg_resources.resource_filename('agx.generator.zca', subpath)
     
-    >>> subpath = 'profiles/gs.profile.uml'
-    >>> gsprofilepath = \
-    ...     pkg_resources.resource_filename('agx.generator.gs', subpath)
+    >>> subpath = 'profiles/plone.profile.uml'
+    >>> ploneprofilepath = \
+    ...     pkg_resources.resource_filename('agx.generator.plone', subpath)
     
-    >>> modelpaths = [modelpath, eggprofilepath, zcaprofilepath, gsprofilepath]
+    >>> modelpaths = [modelpath, eggprofilepath, zcaprofilepath, ploneprofilepath]
     
-    >>> outdir = os.path.join(datadir, 'agx.generator.gs-sample')
+    >>> outdir = os.path.join(datadir, 'agx.generator.plone-sample')
     >>> controller = agx.core.Controller()
     >>> target = controller(modelpaths, outdir)
     >>> target
-    <Directory object '/.../agx.generator.gs/src/agx/generator/gs/tests/data/agx.generator.gs-sample' at ...>
+    <Directory object '/.../agx.generator.plone/src/agx/generator/plone/tests/data/agx.generator.plone-sample' at ...>

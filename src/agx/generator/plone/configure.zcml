@@ -4,7 +4,7 @@
   <include package="agx.generator.zca" />
   
   <utility
-    name="agx.generator.gs.profilelocation"
+    name="agx.generator.plone.profilelocation"
 	provides="agx.core.interfaces.IProfileLocation"
 	component=".profiles.ProfileLocation"
   />

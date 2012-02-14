@@ -1,1 +1,1 @@
-Welcome to agx.generator.gs
+Welcome to agx.generator.plone

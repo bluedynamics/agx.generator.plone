@@ -7,7 +7,7 @@ version = "1.0"
 shortdesc =""
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 
-setup(name="agx.generator.gs",
+setup(name="agx.generator.plone",
       version=version,
       description=shortdesc,
       long_description=longdesc,
