@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:plone="http:///schemas/plone/_8xRkIFb9EeG7eej248Qh-Q/3" xmlns:pyegg="http:///schemas/pyegg/_m3LEwPJqEeC2FJWWHfGcuA/17" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/plone/_8xRkIFb9EeG7eej248Qh-Q/3 ../../profiles/plone.profile.uml#_8xRkIVb9EeG7eej248Qh-Q http:///schemas/pyegg/_m3LEwPJqEeC2FJWWHfGcuA/17 ../../../../../../../agx.generator.pyegg/src/agx/generator/pyegg/profiles/pyegg.profile.uml#_m3OIEPJqEeC2FJWWHfGcuA">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:plone="http:///schemas/plone/_oMOCUFcWEeG6wfliJIpvzA/5" xmlns:pyegg="http:///schemas/pyegg/_m3LEwPJqEeC2FJWWHfGcuA/17" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/plone/_oMOCUFcWEeG6wfliJIpvzA/5 ../../profiles/plone.profile.uml#_oMOCUVcWEeG6wfliJIpvzA http:///schemas/pyegg/_m3LEwPJqEeC2FJWWHfGcuA/17 ../../../../../../../agx.generator.pyegg/src/agx/generator/pyegg/profiles/pyegg.profile.uml#_m3OIEPJqEeC2FJWWHfGcuA">
   <uml:Model xmi:id="_3vprwEwlEeGTE4gBrh7aXw" name="model">
     <packagedElement xmi:type="uml:Package" xmi:id="_aaKB4EyoEeGV5f8-MtNCTQ" name="agx.testpackage">
       <packagedElement xmi:type="uml:Class" xmi:id="_v0MFEEypEeGV5f8-MtNCTQ" name="MyContentType"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_yWmXcEypEeGV5f8-MtNCTQ" name="MyView" clientDependency="_iB-8oEytEeGV5f8-MtNCTQ"/>
-      <packagedElement xmi:type="uml:Dependency" xmi:id="_iB-8oEytEeGV5f8-MtNCTQ" name="Dependency0" supplier="_v0MFEEypEeGV5f8-MtNCTQ" client="_yWmXcEypEeGV5f8-MtNCTQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_yWmXcEypEeGV5f8-MtNCTQ" name="MyView" clientDependency="_iB-8oEytEeGV5f8-MtNCTQ _H7yU8FcjEeG6wfliJIpvzA _eF7b4FcjEeG6wfliJIpvzA"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_iB-8oEytEeGV5f8-MtNCTQ" name="view" supplier="_v0MFEEypEeGV5f8-MtNCTQ" client="_yWmXcEypEeGV5f8-MtNCTQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="__0fdsFciEeG6wfliJIpvzA" name="AnotherContentType"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_H7yU8FcjEeG6wfliJIpvzA" name="other_view" supplier="__0fdsFciEeG6wfliJIpvzA" client="_yWmXcEypEeGV5f8-MtNCTQ"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_eF7b4FcjEeG6wfliJIpvzA" name="edit-view" supplier="_v0MFEEypEeGV5f8-MtNCTQ" client="_yWmXcEypEeGV5f8-MtNCTQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_H_UCsFcmEeGNzK3rlQPxVA" name="GlobalView"/>
     </packagedElement>
     <profileApplication xmi:id="_TbHyoEw5EeGbeeGRuLl9Iw">
       <eAnnotations xmi:id="_TfPdoEw5EeGbeeGRuLl9Iw" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -18,15 +22,18 @@
       </eAnnotations>
       <appliedProfile href="../../../../../../../agx.generator.zca/src/agx/generator/zca/profiles/zca.profile.uml#_gTeSUL-VEeCXSLIizrgdww"/>
     </profileApplication>
-    <profileApplication xmi:id="_JtG_wEw6EeGbeeGRuLl9Iw">
-      <eAnnotations xmi:id="_JtrAcEw6EeGbeeGRuLl9Iw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="../../profiles/plone.profile.uml#_8xRkIVb9EeG7eej248Qh-Q"/>
+    <profileApplication xmi:id="_kfmxMFcXEeG6wfliJIpvzA">
+      <eAnnotations xmi:id="_khmVQFcXEeG6wfliJIpvzA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../../profiles/plone.profile.uml#_oMOCUVcWEeG6wfliJIpvzA"/>
       </eAnnotations>
       <appliedProfile href="../../profiles/plone.profile.uml#__CiAUUwhEeGTE4gBrh7aXw"/>
     </profileApplication>
   </uml:Model>
   <pyegg:pyegg xmi:id="_onRA0EyoEeGV5f8-MtNCTQ" base_Package="_aaKB4EyoEeGV5f8-MtNCTQ"/>
-  <plone:content_type xmi:id="_Mz1rQEyqEeGV5f8-MtNCTQ" base_Class="_v0MFEEypEeGV5f8-MtNCTQ"/>
-  <plone:dynamic_view xmi:id="_OPS1QEytEeGV5f8-MtNCTQ" base_Class="_yWmXcEypEeGV5f8-MtNCTQ"/>
-  <plone:gsprofile xmi:id="_EQnVcFb8EeG7eej248Qh-Q" base_Package="_aaKB4EyoEeGV5f8-MtNCTQ"/>
+  <plone:content_type xmi:id="_oBim4FcXEeG6wfliJIpvzA" base_Class="_v0MFEEypEeGV5f8-MtNCTQ"/>
+  <plone:view xmi:id="_qzejAFcXEeG6wfliJIpvzA" base_Class="_yWmXcEypEeGV5f8-MtNCTQ" name="my_view" permission="zope2.View" template_name="myview_template.pt"/>
+  <plone:content_type xmi:id="_FUKLYFcjEeG6wfliJIpvzA" base_Class="__0fdsFciEeG6wfliJIpvzA"/>
+  <plone:view xmi:id="_LkL_AFcjEeG6wfliJIpvzA" base_Dependency="_H7yU8FcjEeG6wfliJIpvzA" name="anotherview"/>
+  <plone:view xmi:id="_hTm40FcjEeG6wfliJIpvzA" base_Dependency="_eF7b4FcjEeG6wfliJIpvzA"/>
+  <plone:view xmi:id="_K2Td8FcmEeGNzK3rlQPxVA" base_Class="_H_UCsFcmEeGNzK3rlQPxVA"/>
 </xmi:XMI>
