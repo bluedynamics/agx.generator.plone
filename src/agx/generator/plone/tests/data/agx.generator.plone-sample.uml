@@ -34,6 +34,6 @@
   <plone:view xmi:id="_qzejAFcXEeG6wfliJIpvzA" base_Class="_yWmXcEypEeGV5f8-MtNCTQ" name="my_view" permission="zope2.View" template_name="myview_template.pt"/>
   <plone:content_type xmi:id="_FUKLYFcjEeG6wfliJIpvzA" base_Class="__0fdsFciEeG6wfliJIpvzA"/>
   <plone:view xmi:id="_LkL_AFcjEeG6wfliJIpvzA" base_Dependency="_H7yU8FcjEeG6wfliJIpvzA" name="anotherview"/>
-  <plone:view xmi:id="_hTm40FcjEeG6wfliJIpvzA" base_Dependency="_eF7b4FcjEeG6wfliJIpvzA"/>
+  <plone:view xmi:id="_hTm40FcjEeG6wfliJIpvzA" base_Dependency="_eF7b4FcjEeG6wfliJIpvzA" template_name="edit_view.pt"/>
   <plone:view xmi:id="_K2Td8FcmEeGNzK3rlQPxVA" base_Class="_H_UCsFcmEeGNzK3rlQPxVA"/>
 </xmi:XMI>
