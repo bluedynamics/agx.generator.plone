@@ -284,7 +284,7 @@ def plonebrowserview(self, source, target):
         #XXX browserpage relation override must be implemented!
         #XXX if not name given take class name
         name = tgv.direct('name', 'plone:view', view.xminame.lower())
-        template_name = tgv.direct('template_name', 'plone:template_name', view.xminame + '.pt')
+        template_name = tgv.direct('template_name', 'plone:template_name', name + '.pt')
         if bp:
             bptgv = TaggedValues(bp)
             bptok = token(str(context.supplier.uuid), False)
