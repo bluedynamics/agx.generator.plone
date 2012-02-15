@@ -9,8 +9,16 @@
       <packagedElement xmi:type="uml:Dependency" xmi:id="_eF7b4FcjEeG6wfliJIpvzA" name="edit-view" supplier="_v0MFEEypEeGV5f8-MtNCTQ" client="_yWmXcEypEeGV5f8-MtNCTQ"/>
       <packagedElement xmi:type="uml:Package" xmi:id="_ZqVxAFeJEeGNzK3rlQPxVA" name="browser">
         <packagedElement xmi:type="uml:Class" xmi:id="_yWmXcEypEeGV5f8-MtNCTQ" name="MyView" clientDependency="_iB-8oEytEeGV5f8-MtNCTQ _H7yU8FcjEeG6wfliJIpvzA _eF7b4FcjEeG6wfliJIpvzA"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_g-ke4FfREeGNzK3rlQPxVA" name="DynaView" clientDependency="_3yUcIFfUEeGNzK3rlQPxVA"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_3yUcIFfUEeGNzK3rlQPxVA" name="" supplier="__0fdsFciEeG6wfliJIpvzA" client="_g-ke4FfREeGNzK3rlQPxVA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_H_UCsFcmEeGNzK3rlQPxVA" name="GlobalView"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_1cAzcFfREeGNzK3rlQPxVA" name="browserpackage">
+        <packagedElement xmi:type="uml:Class" xmi:id="_H_UCsFcmEeGNzK3rlQPxVA" name="GlobalView"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ZwdVkFfVEeGNzK3rlQPxVA" name="NormalClassShouldNotAppearInBrowserZcml" clientDependency="_eYWGsFfVEeGNzK3rlQPxVA"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_eYWGsFfVEeGNzK3rlQPxVA" name="" supplier="__0fdsFciEeG6wfliJIpvzA" client="_ZwdVkFfVEeGNzK3rlQPxVA"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_4XeiMFfVEeGNzK3rlQPxVA" name="ViewTwo" clientDependency="_Au8jcFfWEeGNzK3rlQPxVA"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_Au8jcFfWEeGNzK3rlQPxVA" name="" supplier="__0fdsFciEeG6wfliJIpvzA" client="_4XeiMFfVEeGNzK3rlQPxVA"/>
     </packagedElement>
     <profileApplication xmi:id="_TbHyoEw5EeGbeeGRuLl9Iw">
       <eAnnotations xmi:id="_TfPdoEw5EeGbeeGRuLl9Iw" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -38,5 +46,8 @@
   <plone:view xmi:id="_LkL_AFcjEeG6wfliJIpvzA" base_Dependency="_H7yU8FcjEeG6wfliJIpvzA" name="anotherview"/>
   <plone:view xmi:id="_hTm40FcjEeG6wfliJIpvzA" base_Dependency="_eF7b4FcjEeG6wfliJIpvzA" template_name="edit_view.pt"/>
   <plone:view xmi:id="_K2Td8FcmEeGNzK3rlQPxVA" base_Class="_H_UCsFcmEeGNzK3rlQPxVA"/>
-  <pyegg:pymodule xmi:id="_kEHoQFeJEeGNzK3rlQPxVA" base_Package="_ZqVxAFeJEeGNzK3rlQPxVA"/>
+  <plone:dynamic_view xmi:id="_ld8NMFfREeGNzK3rlQPxVA" base_Class="_g-ke4FfREeGNzK3rlQPxVA"/>
+  <pyegg:pypackage xmi:id="_dfR4EFfSEeGNzK3rlQPxVA" base_Package="_1cAzcFfREeGNzK3rlQPxVA"/>
+  <pyegg:pymodule xmi:id="_5oaF8FfSEeGNzK3rlQPxVA" base_Package="_ZqVxAFeJEeGNzK3rlQPxVA"/>
+  <plone:view xmi:id="_-nQeMFfVEeGNzK3rlQPxVA" base_Class="_4XeiMFfVEeGNzK3rlQPxVA"/>
 </xmi:XMI>
