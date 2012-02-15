@@ -3,6 +3,9 @@ import os
 
 from node.ext.directory import Directory
 from node.ext.template import DTMLTemplate
+from node.ext.template import XMLTemplate
+
+
 from node.ext.zcml import (
     ZCMLFile,
     SimpleDirective,
@@ -252,6 +255,8 @@ def plonebrowserview(self, source, target):
     else:
         targetdir = target
     path = targetdir.path
+    
+    #get or create browser.zcml
     path.append('browser.zcml')
     fullpath = os.path.join(*path)
     if 'browser.zcml' not in targetdir.keys():
@@ -265,29 +270,35 @@ def plonebrowserview(self, source, target):
     _for = [token(str(context.supplier.uuid), False).fullpath \
             for context in tok.browserpages] or ['*']
     
-#    import pdb;pdb.set_trace()
     classpath = dotted_path(view)
     tgv = TaggedValues(view)
     
+    #create the templates dir
+    if 'templates' not in targetdir.keys():
+        targetdir['templates'] = Directory('templates')
+        
+    templates = targetdir['templates']
     
+    #create the browser:page entries
     for bp in tok.browserpages or [None]:
         #XXX browserpage relation override must be implemented!
         #XXX if not name given take class name
-        name = tgv.direct('name', 'plone:view',view.xminame.lower())
-        
+        name = tgv.direct('name', 'plone:view', view.xminame.lower())
+        template_name = tgv.direct('template_name', 'plone:template_name', view.xminame + '.pt')
         if bp:
-            bptgv=TaggedValues(bp)
+            bptgv = TaggedValues(bp)
             bptok = token(str(context.supplier.uuid), False)
             _for = bptok.fullpath
             
             #consider uuid as an unset name
-#            import pdb;pdb.set_trace()
             
-            if re.match('[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',bp.xminame):
-                bpname=None
+            if re.match('[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}', bp.xminame):
+                bpname = None
             else:
-                bpname=bp.xminame
-            name=bptgv.direct('name','plone:view',bpname or name)
+                bpname = bp.xminame.lower()
+            name = bptgv.direct('name', 'plone:view', bpname or name)
+            #override template name
+            template_name = bptgv.direct('template_name', 'plone:template_name', name + '.pt')
         else:
             _for = '*'
             
@@ -301,15 +312,19 @@ def plonebrowserview(self, source, target):
         if not name is UNSET:
             browser.attrs['name'] = name
         browser.attrs['class'] = classpath
+        templatepath = 'templates/' + template_name
+        browser.attrs['template'] = templatepath
+
+        #spit out the page vanilla template 
+        if template_name not in templates.keys():
+            pt = XMLTemplate()
+            templates[template_name] = pt
     
-    #write the provides which is collected in the zcarealize handler
-#    if len(targettok.realizes) == 1:
-#        provides = targettok.realizes[0]
-#    else:
-#        provides = targettok.provides
-#    adapts.attrs['provides'] = provides['path']
-#    if hasattr(tok,'permission'):
-#        adapts.attrs['permission']=tok.permission
+            # set template for viewtemplate
+            pt.template = 'agx.generator.plone:templates/viewtemplate.pt'
+
+        
+    
 
 
 #This one colects all view dependencies
@@ -347,8 +362,8 @@ def zcviewfinalize(self, source, target):
     if source.stereotype('pyegg:stub') is not None:
         return
     
-    view=source
-    targetview=read_target_node(view,target.target)
+    view = source
+    targetview = read_target_node(view, target.target)
     name = source.name
     module = targetview.parent
 #    import pdb;pdb.set_trace()
