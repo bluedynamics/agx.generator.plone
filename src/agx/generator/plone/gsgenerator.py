@@ -278,7 +278,7 @@ def plonebrowserview(self, source, target):
         targetdir['templates'] = Directory('templates')
         
     templates = targetdir['templates']
-    
+    templates.factories['.pt'] = XMLTemplate
     #create the browser:page entries
     for bp in tok.browserpages or [None]:
         #XXX browserpage relation override must be implemented!
