@@ -44,7 +44,6 @@
   <plone:content_type xmi:id="_oBim4FcXEeG6wfliJIpvzA" base_Class="_v0MFEEypEeGV5f8-MtNCTQ"/>
   <plone:view xmi:id="_qzejAFcXEeG6wfliJIpvzA" base_Class="_yWmXcEypEeGV5f8-MtNCTQ" name="my_view" permission="zope2.View" template_name="myview_template.pt"/>
   <plone:content_type xmi:id="_FUKLYFcjEeG6wfliJIpvzA" base_Class="__0fdsFciEeG6wfliJIpvzA"/>
-  <plone:view xmi:id="_LkL_AFcjEeG6wfliJIpvzA" base_Dependency="_H7yU8FcjEeG6wfliJIpvzA" name="anotherview"/>
   <plone:view xmi:id="_hTm40FcjEeG6wfliJIpvzA" base_Dependency="_eF7b4FcjEeG6wfliJIpvzA" permission="agx.testpackage.SomePermission" template_name="edit_view.pt"/>
   <plone:view xmi:id="_K2Td8FcmEeGNzK3rlQPxVA" base_Class="_H_UCsFcmEeGNzK3rlQPxVA"/>
   <plone:dynamic_view xmi:id="_ld8NMFfREeGNzK3rlQPxVA" base_Class="_g-ke4FfREeGNzK3rlQPxVA"/>
@@ -53,4 +52,5 @@
   <plone:view xmi:id="_-nQeMFfVEeGNzK3rlQPxVA" base_Class="_4XeiMFfVEeGNzK3rlQPxVA"/>
   <plone:gsprofile xmi:id="_EC05kFfXEeGNzK3rlQPxVA" base_Package="_aaKB4EyoEeGV5f8-MtNCTQ"/>
   <zca:permission xmi:id="_WjnewFfYEeGNzK3rlQPxVA" base_Class="_R6VmgFfYEeGNzK3rlQPxVA" title="DoSomething"/>
+  <plone:view xmi:id="_epbYMFfsEeGNzK3rlQPxVA" base_Dependency="_iB-8oEytEeGV5f8-MtNCTQ" template_name="myview_view.pt"/>
 </xmi:XMI>

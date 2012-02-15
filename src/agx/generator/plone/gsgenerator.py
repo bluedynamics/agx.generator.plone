@@ -279,48 +279,60 @@ def plonebrowserview(self, source, target):
         
     templates = targetdir['templates']
     templates.factories['.pt'] = XMLTemplate
+
     #create the browser:page entries
     for bp in tok.browserpages or [None]:
+        viewname = tgv.direct('name', 'plone:view', 'view')
         name = tgv.direct('name', 'plone:view', view.xminame.lower())
+        
         template_name = tgv.direct('template_name', 'plone:view', name + '.pt')
-        permission=tgv.direct('permission','plone:view',None)
-        layer=tgv.direct('layer','plone:view',None)
+        permission = tgv.direct('permission', 'plone:view', None)
+        layer = tgv.direct('layer', 'plone:view', None)
 
         if bp:
             bptgv = TaggedValues(bp)
-            bptok = token(str(context.supplier.uuid), False)
+            bptok = token(str(bp.supplier.uuid), False)
             _for = bptok.fullpath
             
             #consider uuid as an unset name
-            
             if re.match('[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}', bp.xminame):
                 bpname = None
             else:
                 bpname = bp.xminame.lower()
+                
+            if bp.xminame: viewname=bp.xminame
+            viewname = bptgv.direct('name', 'plone:view', viewname)
             name = bptgv.direct('name', 'plone:view', bpname or name)
+            
             #override template name
             template_name = bptgv.direct('template_name', 'plone:view', name + '.pt')
-            permission=bptgv.direct('permission','plone:view',permission)
-            layer=bptgv.direct('layer','plone:view',layer)
+            permission = bptgv.direct('permission', 'plone:view', permission)
+            layer = bptgv.direct('layer', 'plone:view', layer)
         else:
             _for = '*'
             
-        found_browserpages = zcml.filter(tag='browser:page', attr='name', value=name)
+        found_browserpages = zcml.filter(tag='browser:page', attr='name', value=viewname)
+        browser = None
+        templatepath = 'templates/' + template_name
+        
         if found_browserpages:
-            browser = found_browserpages[0]
-        else:     
+            for br in found_browserpages:
+                if br.attrs.get('class') == classpath:
+                    browser = br
+
+        if not browser:     
             browser = SimpleDirective(name='browser:page', parent=zcml)
+            
         browser.attrs['for'] = _for
         if not name is UNSET:
-            browser.attrs['name'] = name
+            browser.attrs['name'] = viewname
         browser.attrs['class'] = classpath
-        templatepath = 'templates/' + template_name
         browser.attrs['template'] = templatepath
         if permission:
-            browser.attrs['permission']=permission
+            browser.attrs['permission'] = permission
             
         if layer:
-            browser.attrs['layer']=layer
+            browser.attrs['layer'] = layer
 
         #spit out the page vanilla template 
         if template_name not in templates.keys():
@@ -329,10 +341,6 @@ def plonebrowserview(self, source, target):
     
             # set template for viewtemplate
             pt.template = 'agx.generator.plone:templates/viewtemplate.pt'
-
-        
-    
-
 
 #This one colects all view dependencies
 @handler('zcviewdepcollect', 'uml2fs', 'connectorgenerator',
@@ -358,9 +366,10 @@ def zcviewdepcollect(self, source, target):
         targetdir = target.parent
     else:
         targetdir = target
-#    print 'adaptcollect:',adaptee.name
+
     tok.browserpages.append(dep)
-    
+
+
 @handler('zcviewfinalize', 'uml2fs', 'semanticsgenerator',
          'viewclass', order=80)
 def zcviewfinalize(self, source, target):
@@ -373,7 +382,6 @@ def zcviewfinalize(self, source, target):
     targetview = read_target_node(view, target.target)
     name = source.name
     module = targetview.parent
-#    import pdb;pdb.set_trace()
     imp = Imports(module)
     imp.set('Products.Five', [['BrowserView', None]])
     set_copyright(source, module)
@@ -385,9 +393,6 @@ def zcviewfinalize(self, source, target):
         
     if 'BrowserView' not in targetview.bases:
         targetview.bases.append('BrowserView')
-#    if not class_.bases:
-#        class_.bases.append('Interface')
-#    target.finalize(source, class_)
 
  
 
