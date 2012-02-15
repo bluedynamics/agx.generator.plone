@@ -155,6 +155,10 @@
         <element xmi:type="uml:Property" href="plone.profile.uml#_DIWY8FcUEeG6wfliJIpvzA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_DIqiAVcUEeG6wfliJIpvzA"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_-AXycFfXEeGNzK3rlQPxVA" type="3002" fontName="Lucida Grande" fontHeight="11" lineColor="0">
+        <element xmi:type="uml:Property" href="plone.profile.uml#_9-CQIFfXEeGNzK3rlQPxVA"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_-AXycVfXEeGNzK3rlQPxVA"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_RvGJQVb7EeG7eej248Qh-Q"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_RvGJQlb7EeG7eej248Qh-Q"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RvGJQ1b7EeG7eej248Qh-Q"/>

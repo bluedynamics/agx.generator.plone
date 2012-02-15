@@ -281,10 +281,11 @@ def plonebrowserview(self, source, target):
     templates.factories['.pt'] = XMLTemplate
     #create the browser:page entries
     for bp in tok.browserpages or [None]:
-        #XXX browserpage relation override must be implemented!
-        #XXX if not name given take class name
         name = tgv.direct('name', 'plone:view', view.xminame.lower())
-        template_name = tgv.direct('template_name', 'plone:template_name', name + '.pt')
+        template_name = tgv.direct('template_name', 'plone:view', name + '.pt')
+        permission=tgv.direct('permission','plone:view',None)
+        layer=tgv.direct('layer','plone:view',None)
+
         if bp:
             bptgv = TaggedValues(bp)
             bptok = token(str(context.supplier.uuid), False)
@@ -298,7 +299,9 @@ def plonebrowserview(self, source, target):
                 bpname = bp.xminame.lower()
             name = bptgv.direct('name', 'plone:view', bpname or name)
             #override template name
-            template_name = bptgv.direct('template_name', 'plone:template_name', name + '.pt')
+            template_name = bptgv.direct('template_name', 'plone:view', name + '.pt')
+            permission=bptgv.direct('permission','plone:view',permission)
+            layer=bptgv.direct('layer','plone:view',layer)
         else:
             _for = '*'
             
@@ -314,6 +317,11 @@ def plonebrowserview(self, source, target):
         browser.attrs['class'] = classpath
         templatepath = 'templates/' + template_name
         browser.attrs['template'] = templatepath
+        if permission:
+            browser.attrs['permission']=permission
+            
+        if layer:
+            browser.attrs['layer']=layer
 
         #spit out the page vanilla template 
         if template_name not in templates.keys():
