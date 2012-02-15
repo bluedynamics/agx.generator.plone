@@ -186,7 +186,7 @@
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_0mQI1FcQEeG6wfliJIpvzA" type="1084"/>
     <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Interface"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0mQI1VcQEeG6wfliJIpvzA" x="632" y="16"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0mQI1VcQEeG6wfliJIpvzA" x="640" y="288"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_0kHlYFcREeG6wfliJIpvzA" type="1031" fontName="Lucida Grande" fontHeight="11" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0kIMcFcREeG6wfliJIpvzA" source="ShadowFigure">
@@ -207,7 +207,7 @@
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_0kIMdlcREeG6wfliJIpvzA" type="1084"/>
     <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Dependency"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0kIMd1cREeG6wfliJIpvzA" x="768" y="16"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0kIMd1cREeG6wfliJIpvzA" x="640" y="20"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_PFDBsUwiEeGTE4gBrh7aXw"/>
   <element xmi:type="uml:Profile" href="plone.profile.uml#__CiAUUwhEeGTE4gBrh7aXw"/>
@@ -238,11 +238,6 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_U43WkVb7EeG7eej248Qh-Q" points="[-2, -11, 0, 51]$[48, -57, 50, 5]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U47oAFb7EeG7eej248Qh-Q" id="(0.52,0.11)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U47oAVb7EeG7eej248Qh-Q" id="(0.8798076923076923,0.82)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_k9SacFcREeG6wfliJIpvzA" type="1013" source="_RvEUEFb7EeG7eej248Qh-Q" target="_0mO6sFcQEeG6wfliJIpvzA" lineColor="0">
-    <styles xmi:type="notation:FontStyle" xmi:id="_k9SacVcREeG6wfliJIpvzA" fontName="Lucida Grande" fontHeight="11"/>
-    <element xmi:type="uml:Extension" href="plone.profile.uml#_k9OwEFcREeG6wfliJIpvzA"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_k9SaclcREeG6wfliJIpvzA" points="[50, -45, -86, 73]$[86, -111, -50, 7]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_3ALYIFcREeG6wfliJIpvzA" type="1013" source="_RvEUEFb7EeG7eej248Qh-Q" target="_0kHlYFcREeG6wfliJIpvzA" lineColor="0">
     <styles xmi:type="notation:FontStyle" xmi:id="_3ALYIVcREeG6wfliJIpvzA" fontName="Lucida Grande" fontHeight="11"/>

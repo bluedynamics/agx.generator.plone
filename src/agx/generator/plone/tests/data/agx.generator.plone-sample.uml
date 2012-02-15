@@ -3,11 +3,13 @@
   <uml:Model xmi:id="_3vprwEwlEeGTE4gBrh7aXw" name="model">
     <packagedElement xmi:type="uml:Package" xmi:id="_aaKB4EyoEeGV5f8-MtNCTQ" name="agx.testpackage">
       <packagedElement xmi:type="uml:Class" xmi:id="_v0MFEEypEeGV5f8-MtNCTQ" name="MyContentType"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_yWmXcEypEeGV5f8-MtNCTQ" name="MyView" clientDependency="_iB-8oEytEeGV5f8-MtNCTQ _H7yU8FcjEeG6wfliJIpvzA _eF7b4FcjEeG6wfliJIpvzA"/>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_iB-8oEytEeGV5f8-MtNCTQ" name="view" supplier="_v0MFEEypEeGV5f8-MtNCTQ" client="_yWmXcEypEeGV5f8-MtNCTQ"/>
       <packagedElement xmi:type="uml:Class" xmi:id="__0fdsFciEeG6wfliJIpvzA" name="AnotherContentType"/>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_H7yU8FcjEeG6wfliJIpvzA" name="other_view" supplier="__0fdsFciEeG6wfliJIpvzA" client="_yWmXcEypEeGV5f8-MtNCTQ"/>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_eF7b4FcjEeG6wfliJIpvzA" name="edit-view" supplier="_v0MFEEypEeGV5f8-MtNCTQ" client="_yWmXcEypEeGV5f8-MtNCTQ"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_ZqVxAFeJEeGNzK3rlQPxVA" name="browser">
+        <packagedElement xmi:type="uml:Class" xmi:id="_yWmXcEypEeGV5f8-MtNCTQ" name="MyView" clientDependency="_iB-8oEytEeGV5f8-MtNCTQ _H7yU8FcjEeG6wfliJIpvzA _eF7b4FcjEeG6wfliJIpvzA"/>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_H_UCsFcmEeGNzK3rlQPxVA" name="GlobalView"/>
     </packagedElement>
     <profileApplication xmi:id="_TbHyoEw5EeGbeeGRuLl9Iw">
@@ -36,4 +38,5 @@
   <plone:view xmi:id="_LkL_AFcjEeG6wfliJIpvzA" base_Dependency="_H7yU8FcjEeG6wfliJIpvzA" name="anotherview"/>
   <plone:view xmi:id="_hTm40FcjEeG6wfliJIpvzA" base_Dependency="_eF7b4FcjEeG6wfliJIpvzA" template_name="edit_view.pt"/>
   <plone:view xmi:id="_K2Td8FcmEeGNzK3rlQPxVA" base_Class="_H_UCsFcmEeGNzK3rlQPxVA"/>
+  <pyegg:pymodule xmi:id="_kEHoQFeJEeGNzK3rlQPxVA" base_Package="_ZqVxAFeJEeGNzK3rlQPxVA"/>
 </xmi:XMI>

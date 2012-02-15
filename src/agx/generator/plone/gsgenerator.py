@@ -1,16 +1,39 @@
+import os
+
 from node.ext.directory import Directory
 from node.ext.template import DTMLTemplate
 from node.ext.zcml import (
     ZCMLFile,
     SimpleDirective,
 )
-from agx.core import handler
-from agx.core.util import read_target_node
+from agx.core import (
+    handler,
+    token,
+)
+
+from agx.core.util import (
+    read_target_node,
+    dotted_path,
+)
+
 from agx.generator.pyegg.utils import (
     egg_source,
     class_base_name,
 )
 
+from node.ext import python
+from node.ext.python.interfaces import (
+    IFunction,
+    IModule,
+)
+
+from node.ext.uml.utils import (
+    Inheritance,
+    TaggedValues,
+    UNSET,
+)
+
+from agx.generator.zca.utils import addZcmlRef
 
 @handler('gsprofiledirectories', 'uml2fs', 'hierarchygenerator',
          'gsprofile', order=100)
@@ -199,3 +222,90 @@ def gsprofilejsregistry(self, source, target):
         'id': 'myfancyscript.js',
         'inline': 'False',
     }]
+    
+    
+#-----------------------------------------------------------------
+#             browserviews
+#-----------------------------------------------------------------
+
+@handler('plonebrowserview', 'uml2fs', 'zcagenerator', 'viewclass', order=20)
+def plonebrowserview(self, source, target):
+    view = source
+    if view.stereotype('pyegg:function'):
+        # XXX: <<function>> <<adapter>> on class
+        return
+    tok = token(str(view.uuid), True, browserpages=[])
+    pack = source.parent
+    target = read_target_node(pack, target.target)
+    targetclass = read_target_node(view, target)
+    if isinstance(target, python.Module):
+        targetdir = target.parent
+    else:
+        targetdir = target
+    path = targetdir.path
+    path.append('browser.zcml')
+    fullpath = os.path.join(*path)
+    if 'browser.zcml' not in targetdir.keys():
+        zcml = ZCMLFile(fullpath)
+        zcml.nsmap['browser']='http://namespaces.zope.org/browser'
+        targetdir['browser.zcml'] = zcml
+    else:
+        zcml = targetdir['browser.zcml']
+    addZcmlRef(targetdir, zcml)
+    targettok = token(str(targetclass.uuid), True, browserpages=[], provides=None)
+    _for = [token(str(context.supplier.uuid), False).fullpath \
+            for context in tok.browserpages] or ['*']
+    
+    import pdb;pdb.set_trace()
+    classpath = dotted_path(view)
+    tgv = TaggedValues(view)
+    
+    #XXX browserpage relation override must be implemented!
+    #XXX if not name given take class name
+    name = tgv.direct('name', 'plone:view')
+    found_browserpages = zcml.filter(tag='browser:page', attr='class', value=classpath)
+    if found_browserpages:
+        adapts = found_browserpages[0]
+    else:     
+        adapts = SimpleDirective(name='browser:page', parent=zcml)
+    adapts.attrs['for'] = _for
+    if not name is UNSET:
+        adapts.attrs['name'] = name
+    adapts.attrs['class'] = classpath
+    
+    #write the provides which is collected in the zcarealize handler
+#    if len(targettok.realizes) == 1:
+#        provides = targettok.realizes[0]
+#    else:
+#        provides = targettok.provides
+#    adapts.attrs['provides'] = provides['path']
+#    if hasattr(tok,'permission'):
+#        adapts.attrs['permission']=tok.permission
+
+
+#This one colects all view dependencies
+@handler('zcviewdepcollect', 'uml2fs', 'connectorgenerator',
+         'dependency', order=10)
+def zcviewdepcollect(self, source, target):
+    import pdb;pdb.set_trace()
+    pack = source.parent
+    dep=source
+    context = source.supplier
+    view = source.client
+    target = read_target_node(pack, target.target)
+    targetcontext = read_target_node(context, target)
+    tok = token(str(view.uuid), True, browserpages=[])
+    contexttok = token(str(context.uuid),True,fullpath=None)
+    
+    if targetcontext:
+        contexttok.fullpath = dotted_path(context)
+    else: #its a stub
+        contexttok.fullpath = '.'.join(
+            [TaggedValues(adaptee).direct('import', 'pyegg:stub'), context.name])
+    if isinstance(target, python.Module):
+        targetdir = target.parent
+    else:
+        targetdir = target
+#    print 'adaptcollect:',adaptee.name
+    tok.browserpages.append(dep)
+
