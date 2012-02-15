@@ -360,6 +360,9 @@ def zcviewfinalize(self, source, target):
     else:
         class_ = python.Class(name)
         module[name] = class_
+        
+    if 'BrowserView' not in targetview.bases:
+        targetview.bases.append('BrowserView')
 #    if not class_.bases:
 #        class_.bases.append('Interface')
 #    target.finalize(source, class_)
