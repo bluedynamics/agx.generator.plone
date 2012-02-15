@@ -1,3 +1,4 @@
+import re
 import os
 
 from node.ext.directory import Directory
@@ -190,7 +191,7 @@ def gsprofilecssregistry(self, source, target):
         'id': 'myfancystyle.css',
         'media': 'all',
         'rel': 'stylesheet',
-        'rendering': 'import',    
+        'rendering': 'import',
     }]
 
 
@@ -247,7 +248,7 @@ def plonebrowserview(self, source, target):
     fullpath = os.path.join(*path)
     if 'browser.zcml' not in targetdir.keys():
         zcml = ZCMLFile(fullpath)
-        zcml.nsmap['browser']='http://namespaces.zope.org/browser'
+        zcml.nsmap['browser'] = 'http://namespaces.zope.org/browser'
         targetdir['browser.zcml'] = zcml
     else:
         zcml = targetdir['browser.zcml']
@@ -256,22 +257,42 @@ def plonebrowserview(self, source, target):
     _for = [token(str(context.supplier.uuid), False).fullpath \
             for context in tok.browserpages] or ['*']
     
-    import pdb;pdb.set_trace()
+#    import pdb;pdb.set_trace()
     classpath = dotted_path(view)
     tgv = TaggedValues(view)
     
-    #XXX browserpage relation override must be implemented!
-    #XXX if not name given take class name
-    name = tgv.direct('name', 'plone:view')
-    found_browserpages = zcml.filter(tag='browser:page', attr='class', value=classpath)
-    if found_browserpages:
-        adapts = found_browserpages[0]
-    else:     
-        adapts = SimpleDirective(name='browser:page', parent=zcml)
-    adapts.attrs['for'] = _for
-    if not name is UNSET:
-        adapts.attrs['name'] = name
-    adapts.attrs['class'] = classpath
+    
+    for bp in tok.browserpages or [None]:
+        #XXX browserpage relation override must be implemented!
+        #XXX if not name given take class name
+        name = tgv.direct('name', 'plone:view',view.xminame.lower())
+        
+        if bp:
+            bptgv=TaggedValues(bp)
+            bptok = token(str(context.supplier.uuid), False)
+            _for = bptok.fullpath
+            
+            #consider uuid as an unset name
+#            import pdb;pdb.set_trace()
+            
+            if re.match('[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}',bp.xminame):
+                bpname=None
+            else:
+                bpname=bp.xminame
+            name=bptgv.direct('name','plone:view',bpname or name)
+        else:
+            _for = '*'
+            
+        print 'browserpage:', name
+        found_browserpages = zcml.filter(tag='browser:page', attr='name', value=name)
+        if found_browserpages:
+            browser = found_browserpages[0]
+        else:     
+            browser = SimpleDirective(name='browser:page', parent=zcml)
+        browser.attrs['for'] = _for
+        if not name is UNSET:
+            browser.attrs['name'] = name
+        browser.attrs['class'] = classpath
     
     #write the provides which is collected in the zcarealize handler
 #    if len(targettok.realizes) == 1:
@@ -287,15 +308,15 @@ def plonebrowserview(self, source, target):
 @handler('zcviewdepcollect', 'uml2fs', 'connectorgenerator',
          'dependency', order=10)
 def zcviewdepcollect(self, source, target):
-    import pdb;pdb.set_trace()
+#    import pdb;pdb.set_trace()
     pack = source.parent
-    dep=source
+    dep = source
     context = source.supplier
     view = source.client
     target = read_target_node(pack, target.target)
     targetcontext = read_target_node(context, target)
     tok = token(str(view.uuid), True, browserpages=[])
-    contexttok = token(str(context.uuid),True,fullpath=None)
+    contexttok = token(str(context.uuid), True, fullpath=None)
     
     if targetcontext:
         contexttok.fullpath = dotted_path(context)

@@ -53,7 +53,7 @@
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_v0iqbkypEeGV5f8-MtNCTQ"/>
         </children>
         <element xmi:type="uml:Class" href="agx.generator.plone-sample.uml#_v0MFEEypEeGV5f8-MtNCTQ"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_v0hcQUypEeGV5f8-MtNCTQ" x="80" y="141" width="125"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_v0hcQUypEeGV5f8-MtNCTQ" x="60" y="113" width="125"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="__1AbEFciEeG6wfliJIpvzA" type="3010" fontName="Lucida Grande" fontHeight="11" lineColor="0">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__1AbElciEeG6wfliJIpvzA" source="ShadowFigure">
@@ -92,7 +92,7 @@
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="__1BCMFciEeG6wfliJIpvzA"/>
         </children>
         <element xmi:type="uml:Class" href="agx.generator.plone-sample.uml#__0fdsFciEeG6wfliJIpvzA"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="__1AbEVciEeG6wfliJIpvzA" x="88" y="293"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="__1AbEVciEeG6wfliJIpvzA" x="60" y="257"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_ZreZcFeJEeGNzK3rlQPxVA" type="3009" fontName="Lucida Grande" fontHeight="11" lineColor="0">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZreZcleJEeGNzK3rlQPxVA" source="ShadowFigure">
