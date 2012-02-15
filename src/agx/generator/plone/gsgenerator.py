@@ -305,7 +305,6 @@ def plonebrowserview(self, source, target):
         else:
             _for = '*'
             
-        print 'browserpage:', name
         found_browserpages = zcml.filter(tag='browser:page', attr='name', value=name)
         if found_browserpages:
             browser = found_browserpages[0]
