@@ -27,11 +27,19 @@ from node.ext.python.interfaces import (
     IFunction,
     IModule,
 )
+from node.ext.python.utils import Imports
+
 
 from node.ext.uml.utils import (
     Inheritance,
     TaggedValues,
     UNSET,
+)
+
+from agx.generator.pyegg.utils import (
+    class_base_name,
+    templatepath,
+    set_copyright,
 )
 
 from agx.generator.zca.utils import addZcmlRef
@@ -315,6 +323,7 @@ def zcviewdepcollect(self, source, target):
     view = source.client
     target = read_target_node(pack, target.target)
     targetcontext = read_target_node(context, target)
+    targetview = read_target_node(view, target)
     tok = token(str(view.uuid), True, browserpages=[])
     contexttok = token(str(context.uuid), True, fullpath=None)
     
@@ -329,4 +338,31 @@ def zcviewdepcollect(self, source, target):
         targetdir = target
 #    print 'adaptcollect:',adaptee.name
     tok.browserpages.append(dep)
+    
+@handler('zcviewfinalize', 'uml2fs', 'semanticsgenerator',
+         'viewclass', order=80)
+def zcviewfinalize(self, source, target):
+    """Create zope interface.
+    """
+    if source.stereotype('pyegg:stub') is not None:
+        return
+    
+    view=source
+    targetview=read_target_node(view,target.target)
+    name = source.name
+    module = targetview.parent
+#    import pdb;pdb.set_trace()
+    imp = Imports(module)
+    imp.set('Products.Five', [['BrowserView', None]])
+    set_copyright(source, module)
+    if module.classes(name):
+        class_ = module.classes(name)[0]
+    else:
+        class_ = python.Class(name)
+        module[name] = class_
+#    if not class_.bases:
+#        class_.bases.append('Interface')
+#    target.finalize(source, class_)
+
+ 
 
