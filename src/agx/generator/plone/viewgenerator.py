@@ -24,9 +24,10 @@ from agx.generator.pyegg.utils import (
     templatepath,
     set_copyright,
     implicit_dotted_path,
+    egg_source,
 )
 from agx.generator.zca.utils import addZcmlRef
-
+from node.ext.python import Attribute
 
 @handler('plonebrowserview', 'uml2fs', 'zcagenerator', 'viewclass', order=20)
 def plonebrowserview(self, source, target):
@@ -88,7 +89,7 @@ def plonebrowserview(self, source, target):
             else:
                 bpname = bp.xminame.lower()
                 
-            if bp.xminame: viewname=bp.xminame
+            if bp.xminame: viewname = bp.xminame
             viewname = bptgv.direct('name', 'plone:view', viewname)
             name = bptgv.direct('name', 'plone:view', bpname or name)
             
@@ -182,3 +183,28 @@ def zcviewfinalize(self, source, target):
         
     if 'BrowserView' not in targetview.bases:
         targetview.bases.append('BrowserView')
+        
+        
+        
+@handler('plone__init__', 'uml2fs', 'hierarchygenerator', 'pythonegg', order=30)
+def plone__init__(self, source, target):
+    """Create python packages.
+    """
+    egg = egg_source(source)
+    eggname = egg.name
+    targetdir = read_target_node(source, target.target)
+    module = targetdir['__init__.py']
+
+    imp = Imports(module)
+    imp.set('zope.i18nmessageid', [['MessageFactory', None]])
+
+    value = 'MessageFactory("%s")' % eggname
+    atts = [att for att in module.attributes() if '_' in att.targets]
+
+    if atts:
+        atts[0].value = value
+    else:
+        module['_'] = Attribute('_', value)
+    
+#    set_copyright(source, module)
+#    target.finalize(source, package)
