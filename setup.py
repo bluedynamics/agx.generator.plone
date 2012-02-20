@@ -28,6 +28,7 @@ setup(name="agx.generator.plone",
           'setuptools',
           ##code-section dependencies
           'agx.generator.zca',
+          'agx.generator.buildout',
           ##/code-section dependencies
       ],
       extras_require = dict(
