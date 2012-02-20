@@ -23,6 +23,7 @@ from node.ext.uml.utils import (
 from agx.generator.pyegg.utils import (
     templatepath,
     set_copyright,
+    implicit_dotted_path,
 )
 from agx.generator.zca.utils import addZcmlRef
 
@@ -57,7 +58,7 @@ def plonebrowserview(self, source, target):
     _for = [token(str(context.supplier.uuid), False).fullpath \
             for context in tok.browserpages] or ['*']
     
-    classpath = dotted_path(view)
+    classpath = implicit_dotted_path(view)
     tgv = TaggedValues(view)
     
     #create the templates dir
@@ -115,8 +116,8 @@ def plonebrowserview(self, source, target):
             browser.attrs['name'] = viewname
         browser.attrs['class'] = classpath
         browser.attrs['template'] = templatepath
-        if permission:
-            browser.attrs['permission'] = permission
+        
+        browser.attrs['permission'] = permission or 'zope2.View'
             
         if layer:
             browser.attrs['layer'] = layer
@@ -146,7 +147,7 @@ def zcviewdepcollect(self, source, target):
     contexttok = token(str(context.uuid), True, fullpath=None)
     
     if targetcontext:
-        contexttok.fullpath = dotted_path(context)
+        contexttok.fullpath = implicit_dotted_path(context)
     else: #its a stub
         contexttok.fullpath = '.'.join(
             [TaggedValues(adaptee).direct('import', 'pyegg:stub'), context.name])
