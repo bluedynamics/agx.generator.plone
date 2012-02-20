@@ -129,9 +129,7 @@ def gsprofilemetadata(self, source, target):
     # XXX: calculate from model
     metadata.params['version'] = '1'
     metadata.params['description'] = 'Package description'
-    metadata.params['dependencies'] = [
-        'profile-foo.bar:default',
-    ]
+    metadata.params['dependencies'] = list()
 
 
 @handler('gsprofilecssregistry', 'uml2fs', 'hierarchygenerator',
