@@ -210,10 +210,8 @@ def zcviewfinalize(self, source, target):
 ###############################
 # move below to separate module
 
-@handler('plone__init__', 'uml2fs', 'hierarchygenerator', 'pythonegg', order=30)
+@handler('plone__init__', 'uml2fs', 'hierarchygenerator', 'gsprofile', order=30)
 def plone__init__(self, source, target):
-    """Create python packages.
-    """
     egg = egg_source(source)
     eggname = egg.name
     targetdir = read_target_node(source, target.target)
@@ -232,7 +230,7 @@ def plone__init__(self, source, target):
 
 
 @handler('resourcedirectory', 'uml2fs', 'zcasemanticsgenerator',
-         'pythonegg', order=50)
+         'gsprofile', order=50)
 def resourcedirectory(self, source, target):
     """Create resource directory and register in ZCML.
     """
@@ -263,8 +261,8 @@ def resourcedirectory(self, source, target):
 
 
 @handler('resourceregistries', 'uml2fs', 'zcasemanticsgenerator',
-         'pythonegg', order=60)
-def resourcedirectory(self, source, target):
+         'gsprofile', order=60)
+def resourceregistries(self, source, target):
     """Create main.css and main.js file in resources directory.
     
     Runs after browser.zcml has been created.
