@@ -1,7 +1,10 @@
 import re
 import os
 from node.ext.directory import Directory
-from node.ext.template import XMLTemplate
+from node.ext.template import (
+    XMLTemplate,
+    DTMLTemplate,
+)
 from node.ext.zcml import (
     ZCMLFile,
     SimpleDirective,
@@ -228,11 +231,10 @@ def plone__init__(self, source, target):
         module['_'] = Attribute('_', value)
 
 
-@handler('resourcedirectory', 'uml2fs', 'zcasemanticsgenerator', 'pythonegg')
+@handler('resourcedirectory', 'uml2fs', 'zcasemanticsgenerator',
+         'pythonegg', order=50)
 def resourcedirectory(self, source, target):
     """Create resource directory and register in ZCML.
-    
-    Runs after browser.zcml has been created.
     """
     egg = egg_source(source)
     eggname = egg.name
@@ -258,3 +260,42 @@ def resourcedirectory(self, source, target):
             name='browser:resourceDirectory', parent=zcml)
         directory.attrs['name'] = eggname
         directory.attrs['directory'] = 'resources'
+
+
+@handler('resourceregistries', 'uml2fs', 'zcasemanticsgenerator',
+         'pythonegg', order=60)
+def resourcedirectory(self, source, target):
+    """Create main.css and main.js file in resources directory.
+    
+    Runs after browser.zcml has been created.
+    """
+    egg = egg_source(source)
+    eggname = egg.name
+    targetdir = read_target_node(source, target.target)
+    resources = targetdir['resources']
+    resources.factories['main.css'] = DTMLTemplate
+    resources.factories['main.js'] = DTMLTemplate
+    
+    if not 'main.css' in resources:
+        css = resources['main.css'] = DTMLTemplate()
+    else:
+        css = resources['main.css']
+    
+    css.template = 'agx.generator.plone:templates/main.css.dtml'
+    css.params['project'] = eggname
+    
+    css.SECTION_BEGIN = '/* code-section'
+    css.SECTION_END = '/* /code-section'
+    css.SECTION_POSTFIX = ' */'
+    
+    if not 'main.js' in resources:
+        js = resources['main.js'] = DTMLTemplate()
+    else:
+        js = resources['main.js']
+    
+    js.template = 'agx.generator.plone:templates/main.js.dtml'
+    js.params['project'] = eggname
+    
+    js.SECTION_BEGIN = '// code-section'
+    js.SECTION_END = '// /code-section'
+    js.SECTION_POSTFIX = ''

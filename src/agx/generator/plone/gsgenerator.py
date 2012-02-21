@@ -150,15 +150,15 @@ def gsprofilecssregistry(self, source, target):
     cssregistry.template = 'agx.generator.plone:templates/cssregistry.xml'
     
     # set template params
-    # XXX: calculate from model
+    egg_name = egg_source(source).name
     cssregistry.params['css'] = [{                      
-        'title': '',
+        'title': '%s main CSS' % egg_name,
         'cacheable': 'True',
         'compression': 'save',
         'cookable': 'True',
         'enabled': '1',
         'expression': '',
-        'id': 'myfancystyle.css',
+        'id': '++resource++%s/main.css' % egg_name,
         'media': 'all',
         'rel': 'stylesheet',
         'rendering': 'import',
@@ -183,13 +183,13 @@ def gsprofilejsregistry(self, source, target):
     jsregistry.template = 'agx.generator.plone:templates/jsregistry.xml'
     
     # set template params
-    # XXX: calculate from model
+    egg_name = egg_source(source).name
     jsregistry.params['scripts'] = [{
         'cacheable': 'True',
         'compression': 'safe',
         'cookable': 'True',
         'enabled': 'True',
         'expression': '',
-        'id': 'myfancyscript.js',
+        'id': '++resource++%s/main.js' % egg_name,
         'inline': 'False',
     }]
