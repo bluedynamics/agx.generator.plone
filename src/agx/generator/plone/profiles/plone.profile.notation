@@ -248,4 +248,14 @@
     <element xmi:type="uml:Extension" href="plone.profile.uml#_3AHGsVcREeG6wfliJIpvzA"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3ALYIlcREeG6wfliJIpvzA" points="[47, -50, -65, 71]$[110, -96, -2, 25]"/>
   </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_NqvekFyDEeGwDp_qVn1OTQ" type="4002" source="_5dBT4EwiEeGTE4gBrh7aXw" target="_RvEUEFb7EeG7eej248Qh-Q" lineColor="0">
+    <children xmi:type="notation:DecorationNode" xmi:id="_NrDnoFyDEeGwDp_qVn1OTQ" type="6007">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_NrDnoVyDEeGwDp_qVn1OTQ" x="1" y="21"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_NqvekVyDEeGwDp_qVn1OTQ" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="uml:Generalization" href="plone.profile.uml#_Nj1lUFyDEeGwDp_qVn1OTQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_NqwFoFyDEeGwDp_qVn1OTQ" points="[17, 9, -203, 0]$[187, 7, -33, -2]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NrvkIFyDEeGwDp_qVn1OTQ" id="(0.83,0.56)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NrvkIVyDEeGwDp_qVn1OTQ" id="(0.22602739726027396,0.48872180451127817)"/>
+  </edges>
 </notation:Diagram>
