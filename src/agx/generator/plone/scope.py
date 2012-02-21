@@ -22,7 +22,9 @@ class ContentTypeScope(Scope):
 
 
 class ViewClassScope(Scope):
-    '''it covers view and dynamic_view'''
+    """Covers view and dynamic_view.
+    """
+    
     def __call__(self, node):
         if not (IClass.providedBy(node) or IInterface.providedBy(node)): 
             return False
@@ -35,11 +37,13 @@ class DynamicViewScope(Scope):
     def __call__(self, node):
         return node.stereotype('plone:dynamic_view') is not None
 
+
 class BrowserPageScope(Scope):
 
     def __call__(self, node):
-        if not IDependency.providedBy(node): return False
-        return node.stereotype('plone:view')  is not None
+        if not IDependency.providedBy(node):
+            return False
+        return node.stereotype('plone:view') is not None
 
 
 registerScope('gsprofile', 'uml2fs', None, ProfileScope)
@@ -47,5 +51,4 @@ registerScope('contenttype', 'uml2fs', None, ContentTypeScope)
 registerScope('viewclass', 'uml2fs', None, ViewClassScope)
 registerScope('dynamicview', 'uml2fs', None, DynamicViewScope)
 registerScope('dependency', 'uml2fs', [IDependency], Scope)
-
 registerScope('browserpage', 'uml2fs', None, BrowserPageScope)

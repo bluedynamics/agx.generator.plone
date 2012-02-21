@@ -47,18 +47,16 @@ def plonebrowserview(self, source, target):
         targetdir = target.parent
     else:
         targetdir = target
-    path = targetdir.path
     
-    #get or create browser.zcml
+    path = targetdir.path
     path.append('browser.zcml')
     fullpath = os.path.join(*path)
-    if 'browser.zcml' not in targetdir.keys():
+    if 'browser.zcml' not in targetdir:
         zcml = ZCMLFile(fullpath)
         zcml.nsmap['browser'] = 'http://namespaces.zope.org/browser'
         targetdir['browser.zcml'] = zcml
     else:
         zcml = targetdir['browser.zcml']
-    
     addZcmlRef(targetdir, zcml)
     
     targettok = token(
@@ -70,7 +68,7 @@ def plonebrowserview(self, source, target):
     classpath = class_full_name(targetclass)
     tgv = TaggedValues(view)
     
-    #create the templates dir
+    # create the templates dir
     if 'templates' not in targetdir.keys():
         targetdir['templates'] = Directory('templates')
         
@@ -206,6 +204,9 @@ def zcviewfinalize(self, source, target):
         targetview.bases.append('BrowserView')
 
 
+###############################
+# move below to separate module
+
 @handler('plone__init__', 'uml2fs', 'hierarchygenerator', 'pythonegg', order=30)
 def plone__init__(self, source, target):
     """Create python packages.
@@ -225,3 +226,35 @@ def plone__init__(self, source, target):
         atts[0].value = value
     else:
         module['_'] = Attribute('_', value)
+
+
+@handler('resourcedirectory', 'uml2fs', 'zcasemanticsgenerator', 'pythonegg')
+def resourcedirectory(self, source, target):
+    """Create resource directory and register in ZCML.
+    
+    Runs after browser.zcml has been created.
+    """
+    egg = egg_source(source)
+    eggname = egg.name
+    targetdir = read_target_node(source, target.target)
+    
+    if 'resources' not in targetdir.keys():
+        targetdir['resources'] = Directory()
+    
+    path = targetdir.path
+    path.append('browser.zcml')
+    fullpath = os.path.join(*path)
+    if 'browser.zcml' not in targetdir:
+        zcml = ZCMLFile(fullpath)
+        zcml.nsmap['browser'] = 'http://namespaces.zope.org/browser'
+        targetdir['browser.zcml'] = zcml
+    else:
+        zcml = targetdir['browser.zcml']
+    addZcmlRef(targetdir, zcml)
+    
+    if not zcml.filter(
+            tag='browser:resourceDirectory', attr='name', value=eggname):
+        directory = SimpleDirective(
+            name='browser:resourceDirectory', parent=zcml)
+        directory.attrs['name'] = eggname
+        directory.attrs['directory'] = 'resources'
