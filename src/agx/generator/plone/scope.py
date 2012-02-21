@@ -5,6 +5,7 @@ from agx.core import (
 from node.ext.uml.interfaces import (
     IDependency,
     IClass,
+    IInterface,
 )
 
 
@@ -23,7 +24,8 @@ class ContentTypeScope(Scope):
 class ViewClassScope(Scope):
     '''it covers view and dynamic_view'''
     def __call__(self, node):
-        if not IClass.providedBy(node): return False
+        if not (IClass.providedBy(node) or IInterface.providedBy(node)): 
+            return False
         return node.stereotype('plone:view') or \
             node.stereotype('plone:dynamic_view') is not None
 

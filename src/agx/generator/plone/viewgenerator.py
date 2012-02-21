@@ -56,7 +56,8 @@ def plonebrowserview(self, source, target):
     else:
         zcml = targetdir['browser.zcml']
     addZcmlRef(targetdir, zcml)
-    targettok = token(str(targetclass.uuid), True, browserpages=[], provides=None)
+    targettok = token(str(targetclass.uuid), True, browserpages=[], 
+                      provides=None)
     _for = [token(str(context.supplier.uuid), False).fullpath \
             for context in tok.browserpages] or ['*']
     
@@ -72,12 +73,19 @@ def plonebrowserview(self, source, target):
 
     #create the browser:page entries
     for bp in tok.browserpages or [None]:
-        viewname = tgv.direct('name', 'plone:view', 'view')
-        name = tgv.direct('name', 'plone:view', view.xminame.lower())
         
-        template_name = tgv.direct('template_name', 'plone:view', name + '.pt')
-        permission = tgv.direct('permission', 'plone:view', None)
-        layer = tgv.direct('layer', 'plone:view', None)
+        #name of view: if it should have a constant name, change the last param
+        viewname = tgv.direct('name', 'plone:view', None) or \
+            tgv.direct('name', 'plone:dynamic_view', view.xminame.lower()) 
+        name = tgv.direct('name', 'plone:view', None) or \
+            tgv.direct('name', 'plone:vdynamic_view', view.xminame.lower())
+        
+        template_name = tgv.direct('template_name', 'plone:view', None) or \
+            tgv.direct('template_name', 'plone:dynamic_view', name + '.pt')
+        permission = tgv.direct('permission', 'plone:view', None) or \
+            tgv.direct('permission', 'plone:dynamic_view', None)
+        layer = tgv.direct('layer', 'plone:view', None) or \
+            tgv.direct('layer', 'plone:dynamic_view', None)
 
         if bp:
             bptgv = TaggedValues(bp)
@@ -91,17 +99,24 @@ def plonebrowserview(self, source, target):
                 bpname = bp.xminame.lower()
                 
             if bp.xminame: viewname = bp.xminame
-            viewname = bptgv.direct('name', 'plone:view', viewname)
-            name = bptgv.direct('name', 'plone:view', bpname or name)
+            viewname = bptgv.direct('name', 'plone:view', None) or \
+                bptgv.direct('name', 'plone:dynamic_view', viewname)
+            name = bptgv.direct('name', 'plone:view', None) or \
+                bptgv.direct('name', 'plone:dynamic_view', bpname or name)
             
             #override template name
-            template_name = bptgv.direct('template_name', 'plone:view', name + '.pt')
-            permission = bptgv.direct('permission', 'plone:view', permission)
-            layer = bptgv.direct('layer', 'plone:view', layer)
+            template_name = bptgv.direct('template_name', 'plone:view',None) or\
+                    bptgv.direct('template_name', 'plone:dynamic_view', 
+                                         name + '.pt')
+            permission = bptgv.direct('permission', 'plone:view', None) or\
+                bptgv.direct('permission', 'plone:dynamic_view', permission)
+            layer = bptgv.direct('layer', 'plone:view', None) or \
+                bptgv.direct('layer', 'plone:dynamic_view', layer)
         else:
             _for = '*'
             
-        found_browserpages = zcml.filter(tag='browser:page', attr='name', value=viewname)
+        found_browserpages = zcml.filter(tag='browser:page', attr='name', 
+                                         value=viewname)
         browser = None
         templatepath = 'templates/' + template_name
         
