@@ -30,16 +30,19 @@ from agx.generator.zca.utils import addZcmlRef
 from node.ext.python import Attribute
 from agx.generator.pyegg.utils import class_full_name
 
+
 @handler('plonebrowserview', 'uml2fs', 'zcagenerator', 'viewclass', order=20)
 def plonebrowserview(self, source, target):
     view = source
     if view.stereotype('pyegg:function'):
         # XXX: <<function>> <<adapter>> on class
         return
+    
     tok = token(str(view.uuid), True, browserpages=[])
     pack = source.parent
     target = read_target_node(pack, target.target)
     targetclass = read_target_node(view, target)
+    
     if isinstance(target, python.Module):
         targetdir = target.parent
     else:
@@ -55,9 +58,12 @@ def plonebrowserview(self, source, target):
         targetdir['browser.zcml'] = zcml
     else:
         zcml = targetdir['browser.zcml']
+    
     addZcmlRef(targetdir, zcml)
-    targettok = token(str(targetclass.uuid), True, browserpages=[], 
-                      provides=None)
+    
+    targettok = token(
+        str(targetclass.uuid), True, browserpages=[], provides=None)
+    
     _for = [token(str(context.supplier.uuid), False).fullpath \
             for context in tok.browserpages] or ['*']
     
@@ -73,13 +79,11 @@ def plonebrowserview(self, source, target):
 
     #create the browser:page entries
     for bp in tok.browserpages or [None]:
-        
         #name of view: if it should have a constant name, change the last param
         viewname = tgv.direct('name', 'plone:view', None) or \
             tgv.direct('name', 'plone:dynamic_view', view.xminame.lower()) 
         name = tgv.direct('name', 'plone:view', None) or \
             tgv.direct('name', 'plone:vdynamic_view', view.xminame.lower())
-        
         template_name = tgv.direct('template_name', 'plone:view', None) or \
             tgv.direct('template_name', 'plone:dynamic_view', name + '.pt')
         permission = tgv.direct('permission', 'plone:view', None) or \
@@ -105,18 +109,20 @@ def plonebrowserview(self, source, target):
                 bptgv.direct('name', 'plone:dynamic_view', bpname or name)
             
             #override template name
-            template_name = bptgv.direct('template_name', 'plone:view',None) or\
-                    bptgv.direct('template_name', 'plone:dynamic_view', 
-                                         name + '.pt')
-            permission = bptgv.direct('permission', 'plone:view', None) or\
+            template_name = bptgv.direct(
+                'template_name', 'plone:view', None) or \
+                bptgv.direct(
+                    'template_name', 'plone:dynamic_view', name + '.pt')
+            permission = bptgv.direct('permission', 'plone:view', None) or \
                 bptgv.direct('permission', 'plone:dynamic_view', permission)
             layer = bptgv.direct('layer', 'plone:view', None) or \
                 bptgv.direct('layer', 'plone:dynamic_view', layer)
         else:
             _for = '*'
-            
-        found_browserpages = zcml.filter(tag='browser:page', attr='name', 
-                                         value=viewname)
+        
+        found_browserpages = zcml.filter(
+            tag='browser:page', attr='name', value=viewname)
+        
         browser = None
         templatepath = 'templates/' + template_name
         
@@ -133,7 +139,6 @@ def plonebrowserview(self, source, target):
             browser.attrs['name'] = viewname
         browser.attrs['class'] = classpath
         browser.attrs['template'] = templatepath
-        
         browser.attrs['permission'] = permission or 'zope2.View'
             
         if layer:
@@ -148,11 +153,11 @@ def plonebrowserview(self, source, target):
             pt.template = 'agx.generator.plone:templates/viewtemplate.pt'
 
 
-#This one colects all view dependencies
 @handler('zcviewdepcollect', 'uml2fs', 'connectorgenerator',
          'dependency', order=10)
 def zcviewdepcollect(self, source, target):
-#    import pdb;pdb.set_trace()
+    """Collect all view dependencies
+    """
     pack = source.parent
     dep = source
     context = source.supplier
@@ -199,9 +204,8 @@ def zcviewfinalize(self, source, target):
         
     if 'BrowserView' not in targetview.bases:
         targetview.bases.append('BrowserView')
-        
-        
-        
+
+
 @handler('plone__init__', 'uml2fs', 'hierarchygenerator', 'pythonegg', order=30)
 def plone__init__(self, source, target):
     """Create python packages.
@@ -221,6 +225,3 @@ def plone__init__(self, source, target):
         atts[0].value = value
     else:
         module['_'] = Attribute('_', value)
-    
-#    set_copyright(source, module)
-#    target.finalize(source, package)
