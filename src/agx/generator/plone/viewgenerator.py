@@ -28,6 +28,7 @@ from agx.generator.pyegg.utils import (
 )
 from agx.generator.zca.utils import addZcmlRef
 from node.ext.python import Attribute
+from agx.generator.pyegg.utils import class_full_name
 
 @handler('plonebrowserview', 'uml2fs', 'zcagenerator', 'viewclass', order=20)
 def plonebrowserview(self, source, target):
@@ -59,7 +60,7 @@ def plonebrowserview(self, source, target):
     _for = [token(str(context.supplier.uuid), False).fullpath \
             for context in tok.browserpages] or ['*']
     
-    classpath = implicit_dotted_path(view)
+    classpath = class_full_name(targetclass)
     tgv = TaggedValues(view)
     
     #create the templates dir
@@ -148,7 +149,7 @@ def zcviewdepcollect(self, source, target):
     contexttok = token(str(context.uuid), True, fullpath=None)
     
     if targetcontext:
-        contexttok.fullpath = implicit_dotted_path(context)
+        contexttok.fullpath = class_full_name(targetcontext)
     else: #its a stub
         contexttok.fullpath = '.'.join(
             [TaggedValues(adaptee).direct('import', 'pyegg:stub'), context.name])
