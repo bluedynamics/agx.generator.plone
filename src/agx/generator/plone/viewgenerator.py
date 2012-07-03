@@ -173,7 +173,7 @@ def zcviewdepcollect(self, source, target):
         contexttok.fullpath = class_full_name(targetcontext)
     else: #its a stub
         contexttok.fullpath = '.'.join(
-            [TaggedValues(adaptee).direct('import', 'pyegg:stub'), context.name])
+            [TaggedValues(context).direct('import', 'pyegg:stub'), context.name])
     if isinstance(target, python.Module):
         targetdir = target.parent
     else:
