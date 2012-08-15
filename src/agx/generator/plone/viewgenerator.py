@@ -34,7 +34,7 @@ from node.ext.python import Attribute
 from agx.generator.pyegg.utils import class_full_name
 
 
-@handler('plonebrowserview', 'uml2fs', 'zcagenerator', 'viewclass', order=20)
+@handler('plonebrowserview', 'uml2fs', 'plonegenerator', 'viewclass', order=150)
 def plonebrowserview(self, source, target):
     view = source
     if view.stereotype('pyegg:function'):
@@ -45,6 +45,7 @@ def plonebrowserview(self, source, target):
     pack = source.parent
     target = read_target_node(pack, target.target)
     targetclass = read_target_node(view, target)
+
     
     if isinstance(target, python.Module):
         targetdir = target.parent
@@ -61,9 +62,11 @@ def plonebrowserview(self, source, target):
     else:
         zcml = targetdir['browser.zcml']
     addZcmlRef(targetdir, zcml)
-    
+
+#    import pdb;pdb.set_trace()    
     targettok = token(
         str(targetclass.uuid), True, browserpages=[], provides=None)
+    
     
     _for = [token(str(context.supplier.uuid), False).fullpath \
             for context in tok.browserpages] or ['*']
@@ -154,8 +157,8 @@ def plonebrowserview(self, source, target):
             pt.template = 'agx.generator.plone:templates/viewtemplate.pt'
 
 
-@handler('zcviewdepcollect', 'uml2fs', 'connectorgenerator',
-         'dependency', order=10)
+@handler('zcviewdepcollect', 'uml2fs', 'plonegenerator',
+         'dependency', order=140)
 def zcviewdepcollect(self, source, target):
     """Collect all view dependencies
     """
@@ -168,9 +171,14 @@ def zcviewdepcollect(self, source, target):
     targetview = read_target_node(view, target)
     tok = token(str(view.uuid), True, browserpages=[])
     contexttok = token(str(context.uuid), True, fullpath=None)
-    
+    dont_generate=token(str(targetcontext.uuid), False,dont_generate=False).dont_generate
     if targetcontext:
-        contexttok.fullpath = class_full_name(targetcontext)
+        if dont_generate:
+            iface=targetcontext.parent.classes('I'+targetcontext.classname)[0]
+            contexttok.fullpath = class_full_name(iface)
+        else:
+            contexttok.fullpath = class_full_name(targetcontext)
+            
     else: #its a stub
         contexttok.fullpath = '.'.join(
             [TaggedValues(context).direct('import', 'pyegg:stub'), context.name])
@@ -182,8 +190,8 @@ def zcviewdepcollect(self, source, target):
     tok.browserpages.append(dep)
 
 
-@handler('zcviewfinalize', 'uml2fs', 'semanticsgenerator',
-         'viewclass', order=80)
+@handler('zcviewfinalize', 'uml2fs', 'plonegenerator',
+         'viewclass', order=145)
 def zcviewfinalize(self, source, target):
     """Create zope interface.
     """
