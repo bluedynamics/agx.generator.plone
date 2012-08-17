@@ -171,8 +171,8 @@ def zcviewdepcollect(self, source, target):
     targetview = read_target_node(view, target)
     tok = token(str(view.uuid), True, browserpages=[])
     contexttok = token(str(context.uuid), True, fullpath=None)
-    dont_generate=token(str(targetcontext.uuid), False,dont_generate=False).dont_generate
     if targetcontext:
+        dont_generate=token(str(targetcontext.uuid), False,dont_generate=False).dont_generate
         if dont_generate:
             iface=targetcontext.parent.classes('I'+targetcontext.classname)[0]
             contexttok.fullpath = class_full_name(iface)
