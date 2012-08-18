@@ -63,14 +63,13 @@ def plonebrowserview(self, source, target):
         zcml = targetdir['browser.zcml']
     addZcmlRef(targetdir, zcml)
 
-#    import pdb;pdb.set_trace()    
     targettok = token(
         str(targetclass.uuid), True, browserpages=[], provides=None)
     
     
     _for = [token(str(context.supplier.uuid), False).fullpath \
             for context in tok.browserpages] or ['*']
-    
+            
     classpath = class_full_name(targetclass)
     tgv = TaggedValues(view)
     
@@ -157,7 +156,7 @@ def plonebrowserview(self, source, target):
             pt.template = 'agx.generator.plone:templates/viewtemplate.pt'
 
 
-@handler('zcviewdepcollect', 'uml2fs', 'plonegenerator',
+@handler('zcviewdepcollect', 'uml2fs', 'connectorgenerator',
          'dependency', order=140)
 def zcviewdepcollect(self, source, target):
     """Collect all view dependencies
