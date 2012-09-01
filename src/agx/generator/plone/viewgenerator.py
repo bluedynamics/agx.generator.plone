@@ -1,5 +1,7 @@
 import re
 import os
+
+from zope.interface.interfaces import ComponentLookupError
 from node.ext.directory import Directory
 from node.ext.template import (
     XMLTemplate,
@@ -85,15 +87,20 @@ def plonebrowserview(self, source, target):
         #name of view: if it should have a constant name, change the last param
         viewname = tgv.direct('name', 'plone:view', None) or \
             tgv.direct('name', 'plone:dynamic_view', view.xminame.lower()) 
-        name = tgv.direct('name', 'plone:view', None) or \
-            tgv.direct('name', 'plone:vdynamic_view', view.xminame.lower())
-        template_name = tgv.direct('template_name', 'plone:view', None) or \
-            tgv.direct('template_name', 'plone:dynamic_view', name + '.pt')
+        name_raw = tgv.direct('name', 'plone:view', None) or \
+            tgv.direct('name', 'plone:vdynamic_view', None)
+            
+        name=name_raw or view.xminame.lower()
+        
+        template_name_raw = tgv.direct('template_name', 'plone:view', None) or \
+            tgv.direct('template_name', 'plone:dynamic_view', None)
+            
+        template_name=template_name_raw or name + '.pt'
         permission = tgv.direct('permission', 'plone:view', None) or \
             tgv.direct('permission', 'plone:dynamic_view', None)
         layer = tgv.direct('layer', 'plone:view', None) or \
             tgv.direct('layer', 'plone:dynamic_view', None)
-
+            
         if bp:
             bptgv = TaggedValues(bp)
             bptok = token(str(bp.supplier.uuid), False)
@@ -108,6 +115,7 @@ def plonebrowserview(self, source, target):
             if bp.xminame: viewname = bp.xminame
             viewname = bptgv.direct('name', 'plone:view', None) or \
                 bptgv.direct('name', 'plone:dynamic_view', viewname)
+                
             name = bptgv.direct('name', 'plone:view', None) or \
                 bptgv.direct('name', 'plone:dynamic_view', bpname or name)
             
@@ -115,7 +123,9 @@ def plonebrowserview(self, source, target):
             template_name = bptgv.direct(
                 'template_name', 'plone:view', None) or \
                 bptgv.direct(
-                    'template_name', 'plone:dynamic_view', name + '.pt')
+                    'template_name', 'plone:dynamic_view', None) or \
+                template_name_raw or name + '.pt'
+                
             permission = bptgv.direct('permission', 'plone:view', None) or \
                 bptgv.direct('permission', 'plone:dynamic_view', permission)
             layer = bptgv.direct('layer', 'plone:view', None) or \
@@ -138,7 +148,7 @@ def plonebrowserview(self, source, target):
             browser = SimpleDirective(name='browser:page', parent=zcml)
             
         browser.attrs['for'] = _for
-        if not name is UNSET:
+        if viewname and not viewname is UNSET:
             browser.attrs['name'] = viewname
         browser.attrs['class'] = classpath
         browser.attrs['template'] = templatepath
@@ -171,13 +181,15 @@ def zcviewdepcollect(self, source, target):
     tok = token(str(view.uuid), True, browserpages=[])
     contexttok = token(str(context.uuid), True, fullpath=None)
     if targetcontext:
-        dont_generate=token(str(targetcontext.uuid), False,dont_generate=False).dont_generate
-        if dont_generate:
-            iface=targetcontext.parent.classes('I'+targetcontext.classname)[0]
-            contexttok.fullpath = class_full_name(iface)
-        else:
-            contexttok.fullpath = class_full_name(targetcontext)
-            
+        try:
+            dont_generate=token(str(targetcontext.uuid), False,dont_generate=False).dont_generate
+            if dont_generate:
+                iface=targetcontext.parent.classes('I'+targetcontext.classname)[0]
+                contexttok.fullpath = class_full_name(iface)
+            else:
+                contexttok.fullpath = class_full_name(targetcontext)
+        except ComponentLookupError: #dont_generate doesnt seem to be defined here
+            pass
     else: #its a stub
         contexttok.fullpath = '.'.join(
             [TaggedValues(context).direct('import', 'pyegg:stub'), context.name])
