@@ -140,9 +140,11 @@ def plonebrowserview(self, source, target):
         templatepath = 'templates/' + template_name
         
         if found_browserpages:
-            for br in found_browserpages:
-                if br.attrs.get('class') == classpath:
+            for br in found_browserpages: #check if it really matches
+                if br.attrs.get('class') == classpath and \
+                     _for == br.attrs['for']:
                     browser = br
+                    break
 
         if not browser:     
             browser = SimpleDirective(name='browser:page', parent=zcml)
