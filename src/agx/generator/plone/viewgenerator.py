@@ -34,6 +34,7 @@ from agx.generator.pyegg.utils import (
 from agx.generator.zca.utils import addZcmlRef
 from node.ext.python import Attribute
 from agx.generator.pyegg.utils import class_full_name
+from agx.generator.zca import utils as zcautils
 
 
 @handler('plonebrowserview', 'uml2fs', 'plonegenerator', 'viewclass', order=150)
@@ -272,6 +273,9 @@ def resourcedirectory(self, source, target):
     else:
         zcml = targetdir['browser.zcml']
     addZcmlRef(targetdir, zcml)
+    
+    #add the resourceDirectory stmt
+    zcautils.set_zcml_directive(targetdir, 'browser.zcml', 'include', 'package', "zope.browserresource", file="meta.zcml")
     
     if not zcml.filter(
             tag='browser:resourceDirectory', attr='name', value=eggname):
