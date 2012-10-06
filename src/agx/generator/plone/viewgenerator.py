@@ -2,6 +2,7 @@ import re
 import os
 
 from zope.interface.interfaces import ComponentLookupError
+from zope.component import getUtility
 from node.ext.directory import Directory
 from node.ext.template import (
     XMLTemplate,
@@ -15,6 +16,7 @@ from agx.core import (
     handler,
     token,
 )
+from agx.core.interfaces import IScope
 from agx.core.util import (
     read_target_node,
     dotted_path,
@@ -174,15 +176,19 @@ def plonebrowserview(self, source, target):
 def zcviewdepcollect(self, source, target):
     """Collect all view dependencies
     """
+    scope=getUtility(IScope,'uml2fs.viewclass')
     pack = source.parent
     dep = source
     context = source.supplier
     view = source.client
+    if not scope(view): #we are only interested in views!
+        return
     target = read_target_node(pack, target.target)
     targetcontext = read_target_node(context, target)
     targetview = read_target_node(view, target)
     tok = token(str(view.uuid), True, browserpages=[])
     contexttok = token(str(context.uuid), True, fullpath=None)
+    
     if targetcontext:
         try:
             dont_generate=token(str(targetcontext.uuid), False,dont_generate=False).dont_generate
@@ -195,7 +201,7 @@ def zcviewdepcollect(self, source, target):
             pass
     else: #its a stub
         contexttok.fullpath = '.'.join(
-            [TaggedValues(context).direct('import', 'pyegg:stub'), context.name])
+            [TaggedValues(context).direct('import', 'pyegg:stub'), context.name])            
     if isinstance(target, python.Module):
         targetdir = target.parent
     else:
