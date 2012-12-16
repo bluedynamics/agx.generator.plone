@@ -36,7 +36,7 @@
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_zRj3NkwiEeGTE4gBrh7aXw" type="1084"/>
     <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zRj3N0wiEeGTE4gBrh7aXw" x="181" y="19" width="416"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zRj3N0wiEeGTE4gBrh7aXw" x="245" y="20" width="416"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_1FnOwEwiEeGTE4gBrh7aXw" type="1026" fontName="Ubuntu" fontHeight="10" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1Fn10EwiEeGTE4gBrh7aXw" source="ShadowFigure">
@@ -64,7 +64,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1Fn13kwiEeGTE4gBrh7aXw"/>
     </children>
     <element xmi:type="uml:Stereotype" href="plone.profile.uml#_1FcPoEwiEeGTE4gBrh7aXw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1FnOwUwiEeGTE4gBrh7aXw" x="145" y="110"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1FnOwUwiEeGTE4gBrh7aXw" x="170" y="110"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_5dBT4EwiEeGTE4gBrh7aXw" type="1026" fontName="Ubuntu" fontHeight="10" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_5dB68EwiEeGTE4gBrh7aXw" source="ShadowFigure">
@@ -88,7 +88,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5dCiCkwiEeGTE4gBrh7aXw"/>
     </children>
     <element xmi:type="uml:Stereotype" href="plone.profile.uml#_5c5YEEwiEeGTE4gBrh7aXw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5dBT4UwiEeGTE4gBrh7aXw" x="520" y="110"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5dBT4UwiEeGTE4gBrh7aXw" x="530" y="110"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_ThK1cEwnEeGTE4gBrh7aXw" type="1031" fontName="Ubuntu" fontHeight="10" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThK1ckwnEeGTE4gBrh7aXw" source="ShadowFigure">
@@ -123,6 +123,10 @@
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_UtzAoEwnEeGTE4gBrh7aXw" type="1034"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_UtzAoUwnEeGTE4gBrh7aXw" type="1071">
+      <children xmi:type="notation:Shape" xmi:id="_NYFp4ETWEeKw_KtXikBFrg" type="3002" fontName="Ubuntu" lineColor="0">
+        <element xmi:type="uml:Property" href="plone.profile.uml#_NXd-0ETWEeKw_KtXikBFrg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_NYFp4UTWEeKw_KtXikBFrg"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_UtzAokwnEeGTE4gBrh7aXw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_UtzAo0wnEeGTE4gBrh7aXw"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UtzApEwnEeGTE4gBrh7aXw"/>
@@ -133,7 +137,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UtzAqEwnEeGTE4gBrh7aXw"/>
     </children>
     <element xmi:type="uml:Stereotype" href="plone.profile.uml#_UtuIIEwnEeGTE4gBrh7aXw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UtxLcUwnEeGTE4gBrh7aXw" x="30" y="110" width="101" height="101"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UtxLcUwnEeGTE4gBrh7aXw" x="15" y="110" width="136" height="101"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_RvEUEFb7EeG7eej248Qh-Q" type="1026" fontName="Ubuntu" fontHeight="10" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RvFiMFb7EeG7eej248Qh-Q" source="ShadowFigure">
@@ -241,7 +245,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eGhFVI3XEeGdVsfBtavtkg"/>
     </children>
     <element xmi:type="uml:Stereotype" href="plone.profile.uml#_eFET0I3XEeGdVsfBtavtkg"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eGU4EY3XEeGdVsfBtavtkg" x="392" y="110"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eGU4EY3XEeGdVsfBtavtkg" x="405" y="110"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_PFDBsUwiEeGTE4gBrh7aXw"/>
   <element xmi:type="uml:Profile" href="plone.profile.uml#__CiAUUwhEeGTE4gBrh7aXw"/>

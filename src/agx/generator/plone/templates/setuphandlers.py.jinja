@@ -1,0 +1,7 @@
+
+def install(context):
+    if context.readDataFile('{{markerfilename}}') is None:
+        return
+    portal = context.getSite()
+
+
