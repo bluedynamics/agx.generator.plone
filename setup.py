@@ -40,6 +40,8 @@ setup(name="agx.generator.plone",
       ),
       entry_points="""
       ##code-section entry_points
+      [agx.generator]
+      register = agx.generator.plone:register
       ##/code-section entry_points
       """,
       ##code-section additionals
