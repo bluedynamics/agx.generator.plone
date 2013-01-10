@@ -32,4 +32,4 @@ Setup configuration and emulate main routine::
     >>> controller = agx.core.Controller()
     >>> target = controller(modelpaths, outdir)
     >>> target
-    <Directory object '/.../agx.generator.plone/src/agx/generator/plone/tests/data/agx.generator.plone-sample' at ...>
+    <Directory object '/.../agx.generator.plone/src/agx/generator/plone/testing/data/agx.generator.plone-sample' at ...>
