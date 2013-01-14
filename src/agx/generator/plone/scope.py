@@ -24,7 +24,7 @@ class ContentTypeScope(Scope):
 class ViewClassScope(Scope):
     """Covers view and dynamic_view.
     """
-    
+
     def __call__(self, node):
         if not (IClass.providedBy(node) or IInterface.providedBy(node)): 
             return False

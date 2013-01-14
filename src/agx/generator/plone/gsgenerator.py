@@ -1,12 +1,14 @@
 from node.ext.directory import Directory
-from node.ext.template import DTMLTemplate, JinjaTemplate
+from node.ext.template import (
+    DTMLTemplate,
+    JinjaTemplate,
+)
 from node.ext.zcml import (
     ZCMLFile,
     SimpleDirective,
 )
 from agx.core import handler
 from agx.generator.pyegg.utils import egg_source
-
 from agx.core.util import (
     read_target_node,
     dotted_path,
@@ -199,6 +201,7 @@ def gsprofilejsregistry(self, source, target):
         'inline': 'False',
     }]
 
+
 @handler('gsprofilesetuphandlers', 'uml2fs', 'hierarchygenerator',
          'gsprofile', order=120)
 def gsprofilesetuphandlers(self, source, target):
@@ -215,7 +218,6 @@ def gsprofilesetuphandlers(self, source, target):
     #create setuphandlers.py
     setupname = 'setuphandlers.py'
     if setupname not in package.keys():
-
         setup = JinjaTemplate()
         package[setupname] = setup
         setup.template = 'agx.generator.plone:templates/setuphandlers.py.jinja'
@@ -224,7 +226,8 @@ def gsprofilesetuphandlers(self, source, target):
     #create the markerfile
     if not markerfilename in default.keys():
         markerfile = default[markerfilename] = DTMLTemplate()
-        markerfile.template = 'agx.generator.plone:templates/productname_marker.txt'
+        markerfile.template = \
+            'agx.generator.plone:templates/productname_marker.txt'
 
     # read or create import_steps.xml
     if 'import_steps.xml' in default:
@@ -241,7 +244,3 @@ def gsprofilesetuphandlers(self, source, target):
         'handler' : path,
         'handlertitle' : 'Installer for ' + dotted_path(egg)
     }
-
-
-
-

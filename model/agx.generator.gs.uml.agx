@@ -1,5 +1,0 @@
-#---AGX Properties---
-#Fri Jan 13 10:23:03 CET 2012
-profiles=pyegg;zca
-generator=/home/rnix/workspace/agx.dev/bin/agx
-target=/home/rnix/workspace/agx.dev/devsrc/agx.generator.gs
