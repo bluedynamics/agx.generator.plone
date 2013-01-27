@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_foIlMFunEeGtD5GMZ61r8A" name="buildout" metaclassReference="_wJgFwFunEeGtD5GMZ61r8A">
+  <eAnnotations xmi:id="_6nGtEFunEeGtD5GMZ61r8A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_JO9FcVvjEeG1f-Kr3Cp4uw" name="buildout" nsURI="http:///schemas/buildout/_JO9FcFvjEeG1f-Kr3Cp4uw/1" nsPrefix="buildout">
+      <eAnnotations xmi:id="_JO9sgFvjEeG1f-Kr3Cp4uw" source="PapyrusVersion">
+        <details xmi:id="_JO9sgVvjEeG1f-Kr3Cp4uw" key="Version" value="0.0.2"/>
+        <details xmi:id="_JO9sglvjEeG1f-Kr3Cp4uw" key="Comment" value=""/>
+        <details xmi:id="_JO9sg1vjEeG1f-Kr3Cp4uw" key="Copyright" value=""/>
+        <details xmi:id="_JO9shFvjEeG1f-Kr3Cp4uw" key="Date" value="2012-02-20"/>
+        <details xmi:id="_JO9shVvjEeG1f-Kr3Cp4uw" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_JO9FclvjEeG1f-Kr3Cp4uw" name="self_contained_buildout">
+        <eAnnotations xmi:id="_JO9Fc1vjEeG1f-Kr3Cp4uw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_w47-oFunEeGtD5GMZ61r8A"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_JO9FdFvjEeG1f-Kr3Cp4uw" name="plone_self_contained" eSuperTypes="_JO9FclvjEeG1f-Kr3Cp4uw">
+        <eAnnotations xmi:id="_JO9FdVvjEeG1f-Kr3Cp4uw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1Np8IFunEeGtD5GMZ61r8A"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JO9FdlvjEeG1f-Kr3Cp4uw" name="base_Package" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_6nHUIFunEeGtD5GMZ61r8A" name="buildout" nsURI="http:///schemas/buildout/_6nBNgFunEeGtD5GMZ61r8A/0" nsPrefix="buildout">
+      <eAnnotations xmi:id="_6nRFIFunEeGtD5GMZ61r8A" source="PapyrusVersion">
+        <details xmi:id="_6nRFIVunEeGtD5GMZ61r8A" key="Version" value="0.0.1"/>
+        <details xmi:id="_6nRFIlunEeGtD5GMZ61r8A" key="Comment" value=""/>
+        <details xmi:id="_6nRFI1unEeGtD5GMZ61r8A" key="Copyright" value=""/>
+        <details xmi:id="_6nRFJFunEeGtD5GMZ61r8A" key="Date" value="2012-02-20"/>
+        <details xmi:id="_6nRFJVunEeGtD5GMZ61r8A" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_6nHUIVunEeGtD5GMZ61r8A" name="contained">
+        <eAnnotations xmi:id="_6nHUIlunEeGtD5GMZ61r8A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_w47-oFunEeGtD5GMZ61r8A"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_6nHUI1unEeGtD5GMZ61r8A" name="plone" eSuperTypes="_6nHUIVunEeGtD5GMZ61r8A">
+        <eAnnotations xmi:id="_6nHUJFunEeGtD5GMZ61r8A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1Np8IFunEeGtD5GMZ61r8A"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_6nHUJVunEeGtD5GMZ61r8A" name="base_Package" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_wJgFwFunEeGtD5GMZ61r8A" alias="Package">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_w47-oFunEeGtD5GMZ61r8A" name="self_contained_buildout"/>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_1Np8IFunEeGtD5GMZ61r8A" name="plone_self_contained">
+    <generalization xmi:id="_5h2VMFunEeGtD5GMZ61r8A" general="_w47-oFunEeGtD5GMZ61r8A"/>
+    <ownedAttribute xmi:id="_43JLUFunEeGtD5GMZ61r8A" name="base_Package" association="_43JyYFunEeGtD5GMZ61r8A">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_43JyYFunEeGtD5GMZ61r8A" name="E_plone_self_contained_Package0" memberEnd="_43JyYVunEeGtD5GMZ61r8A _43JLUFunEeGtD5GMZ61r8A">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_43JyYVunEeGtD5GMZ61r8A" name="extension_plone_self_contained" type="_1Np8IFunEeGtD5GMZ61r8A" aggregation="composite" association="_43JyYFunEeGtD5GMZ61r8A"/>
+  </packagedElement>
+</uml:Profile>

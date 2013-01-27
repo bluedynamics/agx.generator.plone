@@ -1,0 +1,9 @@
+#---AGX Manifest---
+#Tue Jan 17 23:19:13 CET 2012
+files=model.di;\
+    model.notation;\
+    model.uml;\
+    model.uml.agx;\
+
+title=Plone Product
+description=A vanilla Plone  model that containing the necessary settings for a Plone product without content framework
