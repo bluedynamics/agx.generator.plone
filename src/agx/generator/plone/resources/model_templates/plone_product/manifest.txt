@@ -6,4 +6,6 @@ files=model.di;\
     model.uml.agx;\
 
 title=Plone Product
-description=A vanilla Plone  model that containing the necessary settings for a Plone product without content framework
+description=A vanilla Plone model that contains the necessary settings
+    for a Plone product: generic setup profile etc.
+    but without content classes.
