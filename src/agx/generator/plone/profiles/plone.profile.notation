@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_PFDBsEwiEeGTE4gBrh7aXw" type="PapyrusUMLProfileDiagram" name="plone" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_PFDBsEwiEeGTE4gBrh7aXw" type="PapyrusUMLProfileDiagram" name="plone" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_XVuecEwiEeGTE4gBrh7aXw" type="1030" fontName="Ubuntu" fontHeight="10" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XVvskEwiEeGTE4gBrh7aXw" source="ShadowFigure">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XVvskUwiEeGTE4gBrh7aXw" key="ShadowFigure_Value" value="false"/>
@@ -28,11 +28,11 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zRj3NUwiEeGTE4gBrh7aXw" key="QualifiedNameDepth" value="1000"/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_zRkeQEwiEeGTE4gBrh7aXw" source="Stereotype_Annotation">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zRkeQUwiEeGTE4gBrh7aXw" key="StereotypeWithQualifiedNameList" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zRkeQkwiEeGTE4gBrh7aXw" key="StereotypeList" value="Standard::Metaclass"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zRkeQ0wiEeGTE4gBrh7aXw" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zRkeREwiEeGTE4gBrh7aXw" key="PropStereoDisplay" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zRkeRUwiEeGTE4gBrh7aXw" key="StereotypePropertyLocation" value="Compartment"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlSt4HtXEeKfMvxpliE4xA" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlSt4XtXEeKfMvxpliE4xA" key="StereotypeList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlSt4ntXEeKfMvxpliE4xA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlSt43tXEeKfMvxpliE4xA" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlSt5HtXEeKfMvxpliE4xA" key="StereotypePropertyLocation" value="Compartment"/>
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_zRj3NkwiEeGTE4gBrh7aXw" type="1084"/>
     <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
@@ -64,7 +64,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1Fn13kwiEeGTE4gBrh7aXw"/>
     </children>
     <element xmi:type="uml:Stereotype" href="plone.profile.uml#_1FcPoEwiEeGTE4gBrh7aXw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1FnOwUwiEeGTE4gBrh7aXw" x="170" y="110"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1FnOwUwiEeGTE4gBrh7aXw" x="200" y="112" width="241" height="97"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_5dBT4EwiEeGTE4gBrh7aXw" type="1026" fontName="Ubuntu" fontHeight="10" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_5dB68EwiEeGTE4gBrh7aXw" source="ShadowFigure">
@@ -88,7 +88,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5dCiCkwiEeGTE4gBrh7aXw"/>
     </children>
     <element xmi:type="uml:Stereotype" href="plone.profile.uml#_5c5YEEwiEeGTE4gBrh7aXw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5dBT4UwiEeGTE4gBrh7aXw" x="530" y="110"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5dBT4UwiEeGTE4gBrh7aXw" x="599" y="111"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_ThK1cEwnEeGTE4gBrh7aXw" type="1031" fontName="Ubuntu" fontHeight="10" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThK1ckwnEeGTE4gBrh7aXw" source="ShadowFigure">
@@ -101,11 +101,11 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ThK1d0wnEeGTE4gBrh7aXw" key="QualifiedNameDepth" value="1000"/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThLcgUwnEeGTE4gBrh7aXw" source="Stereotype_Annotation">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ThLcgkwnEeGTE4gBrh7aXw" key="StereotypeWithQualifiedNameList" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ThLcg0wnEeGTE4gBrh7aXw" key="StereotypeList" value="Standard::Metaclass"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ThLchEwnEeGTE4gBrh7aXw" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ThLchUwnEeGTE4gBrh7aXw" key="PropStereoDisplay" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ThLchkwnEeGTE4gBrh7aXw" key="StereotypePropertyLocation" value="Compartment"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlWYQHtXEeKfMvxpliE4xA" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlWYQXtXEeKfMvxpliE4xA" key="StereotypeList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlWYQntXEeKfMvxpliE4xA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlWYQ3tXEeKfMvxpliE4xA" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlWYRHtXEeKfMvxpliE4xA" key="StereotypePropertyLocation" value="Compartment"/>
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_ThK1eEwnEeGTE4gBrh7aXw" type="1084"/>
     <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
@@ -137,7 +137,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UtzAqEwnEeGTE4gBrh7aXw"/>
     </children>
     <element xmi:type="uml:Stereotype" href="plone.profile.uml#_UtuIIEwnEeGTE4gBrh7aXw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UtxLcUwnEeGTE4gBrh7aXw" x="15" y="110" width="136" height="101"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UtxLcUwnEeGTE4gBrh7aXw" x="15" y="110" width="154" height="103"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_RvEUEFb7EeG7eej248Qh-Q" type="1026" fontName="Ubuntu" fontHeight="10" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RvFiMFb7EeG7eej248Qh-Q" source="ShadowFigure">
@@ -177,7 +177,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RvGJR1b7EeG7eej248Qh-Q"/>
     </children>
     <element xmi:type="uml:Stereotype" href="plone.profile.uml#_Ru3fwFb7EeG7eej248Qh-Q"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RvEUEVb7EeG7eej248Qh-Q" x="665" y="105"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RvEUEVb7EeG7eej248Qh-Q" x="784" y="104"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_0mO6sFcQEeG6wfliJIpvzA" type="1031" fontName="Lucida Grande" fontHeight="11" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0mPhwFcQEeG6wfliJIpvzA" source="ShadowFigure">
@@ -190,15 +190,15 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0mQI01cQEeG6wfliJIpvzA" key="QualifiedNameDepth" value="1000"/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0mQv4FcQEeG6wfliJIpvzA" source="Stereotype_Annotation">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0mQv4VcQEeG6wfliJIpvzA" key="StereotypeWithQualifiedNameList" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0mQv4lcQEeG6wfliJIpvzA" key="StereotypeList" value="Standard::Metaclass"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0mQv41cQEeG6wfliJIpvzA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0mQv5FcQEeG6wfliJIpvzA" key="PropStereoDisplay" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0mQv5VcQEeG6wfliJIpvzA" key="StereotypePropertyLocation" value="Compartment"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlY0gHtXEeKfMvxpliE4xA" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlY0gXtXEeKfMvxpliE4xA" key="StereotypeList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlY0gntXEeKfMvxpliE4xA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlY0g3tXEeKfMvxpliE4xA" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KlY0hHtXEeKfMvxpliE4xA" key="StereotypePropertyLocation" value="Compartment"/>
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_0mQI1FcQEeG6wfliJIpvzA" type="1084"/>
     <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Interface"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0mQI1VcQEeG6wfliJIpvzA" x="712" y="290"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0mQI1VcQEeG6wfliJIpvzA" x="831" y="289"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_0kHlYFcREeG6wfliJIpvzA" type="1031" fontName="Lucida Grande" fontHeight="11" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0kIMcFcREeG6wfliJIpvzA" source="ShadowFigure">
@@ -211,15 +211,15 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0kIMdVcREeG6wfliJIpvzA" key="QualifiedNameDepth" value="1000"/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0kIMeFcREeG6wfliJIpvzA" source="Stereotype_Annotation">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0kIMeVcREeG6wfliJIpvzA" key="StereotypeWithQualifiedNameList" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0kIMelcREeG6wfliJIpvzA" key="StereotypeList" value="Standard::Metaclass"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0kIMe1cREeG6wfliJIpvzA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0kIMfFcREeG6wfliJIpvzA" key="PropStereoDisplay" value=""/>
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0kIMfVcREeG6wfliJIpvzA" key="StereotypePropertyLocation" value="Compartment"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Klb30HtXEeKfMvxpliE4xA" key="StereotypeWithQualifiedNameList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Klb30XtXEeKfMvxpliE4xA" key="StereotypeList" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Klce4HtXEeKfMvxpliE4xA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Klce4XtXEeKfMvxpliE4xA" key="PropStereoDisplay" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Klce4ntXEeKfMvxpliE4xA" key="StereotypePropertyLocation" value="Compartment"/>
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_0kIMdlcREeG6wfliJIpvzA" type="1084"/>
     <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Dependency"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0kIMd1cREeG6wfliJIpvzA" x="712" y="22"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0kIMd1cREeG6wfliJIpvzA" x="796" y="16"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_eGU4EI3XEeGdVsfBtavtkg" type="1026" fontName="Lucida Grande" fontHeight="11" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eGWGMI3XEeGdVsfBtavtkg" source="ShadowFigure">
@@ -245,7 +245,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eGhFVI3XEeGdVsfBtavtkg"/>
     </children>
     <element xmi:type="uml:Stereotype" href="plone.profile.uml#_eFET0I3XEeGdVsfBtavtkg"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eGU4EY3XEeGdVsfBtavtkg" x="405" y="110"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eGU4EY3XEeGdVsfBtavtkg" x="468" y="112"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_PFDBsUwiEeGTE4gBrh7aXw"/>
   <element xmi:type="uml:Profile" href="plone.profile.uml#__CiAUUwhEeGTE4gBrh7aXw"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_R0EmcFy6EeG1mLF7jMwarw" type="PapyrusUMLClassDiagram" name="ClassDiagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_R0EmcFy6EeG1mLF7jMwarw" type="PapyrusUMLClassDiagram" name="ClassDiagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_S7s84Fy6EeG1mLF7jMwarw" type="2007" fontName="Ubuntu" fontHeight="10" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_S7uLAFy6EeG1mLF7jMwarw" source="ShadowFigure">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_S7uLAVy6EeG1mLF7jMwarw" key="ShadowFigure_Value" value="false"/>
@@ -22,7 +22,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_S7uyFFy6EeG1mLF7jMwarw"/>
     </children>
     <element xmi:type="uml:Package" href="model.uml#_S7ndUFy6EeG1mLF7jMwarw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_S7s84Vy6EeG1mLF7jMwarw" x="49" y="45" width="327" height="96"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_S7s84Vy6EeG1mLF7jMwarw" x="49" y="45" width="728" height="412"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_R0EmcVy6EeG1mLF7jMwarw"/>
   <element xmi:type="uml:Model" href="model.uml#_SBHO0Fy4EeG1mLF7jMwarw"/>

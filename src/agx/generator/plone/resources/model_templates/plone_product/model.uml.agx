@@ -1,4 +1,4 @@
 #---AGX Properties---
-#Tue Jan 17 23:19:13 CET 2012
+#Wed Feb 20 14:33:06 CET 2013
 profiles=pyegg;zca;buildout;plone
-target=.
+target=/Users/phil/dev/projects/agx_workspace/agx.dev/devsrc/agx.generator.plone/src/agx/generator/plone/resources/model_templates/plone_product
