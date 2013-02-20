@@ -2,6 +2,69 @@
 <uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="__CiAUUwhEeGTE4gBrh7aXw" name="plone" metaclassReference="_zRdwkEwiEeGTE4gBrh7aXw _ThJAQEwnEeGTE4gBrh7aXw _0lpE0FcQEeG6wfliJIpvzA _0kFJIFcREeG6wfliJIpvzA" metamodelReference="_packageImport.0">
   <eAnnotations xmi:id="_fS-PkEwnEeGTE4gBrh7aXw" source="http://www.eclipse.org/uml2/2.0.0/UML">
     <details xmi:id="_1JQbYHtcEeKfMvxpliE4xA"/>
+    <contents xmi:type="ecore:EPackage" xmi:id="_ggDekHtjEeKvC-Xbutnx2A" name="plone" nsURI="http:///schemas/plone/_ggC3gHtjEeKvC-Xbutnx2A/15" nsPrefix="plone">
+      <eAnnotations xmi:id="_ggNPkHtjEeKvC-Xbutnx2A" source="PapyrusVersion">
+        <details xmi:id="_ggNPkXtjEeKvC-Xbutnx2A" key="Version" value="0.0.11"/>
+        <details xmi:id="_ggNPkntjEeKvC-Xbutnx2A" key="Comment" value=""/>
+        <details xmi:id="_ggNPk3tjEeKvC-Xbutnx2A" key="Copyright" value=""/>
+        <details xmi:id="_ggNPlHtjEeKvC-Xbutnx2A" key="Date" value="2013-02-20"/>
+        <details xmi:id="_ggNPlXtjEeKvC-Xbutnx2A" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ggDekXtjEeKvC-Xbutnx2A" name="content_type">
+        <eAnnotations xmi:id="_ggDekntjEeKvC-Xbutnx2A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1FcPoEwiEeGTE4gBrh7aXw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ggDek3tjEeKvC-Xbutnx2A" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ggDelXtjEeKvC-Xbutnx2A" name="create_contentclass" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ggDel3tjEeKvC-Xbutnx2A" name="dynamic_view" eSuperTypes="_ggDenntjEeKvC-Xbutnx2A">
+        <eAnnotations xmi:id="_ggDemHtjEeKvC-Xbutnx2A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_5c5YEEwiEeGTE4gBrh7aXw"/>
+        <eAnnotations xmi:id="_ggDemXtjEeKvC-Xbutnx2A" source="duplicates">
+          <contents xmi:type="ecore:EReference" xmi:id="_ggDemntjEeKvC-Xbutnx2A" name="base_Class" ordered="false" lowerBound="1">
+            <eAnnotations xmi:id="_ggDem3tjEeKvC-Xbutnx2A" source="redefines" references="_ggDeoHtjEeKvC-Xbutnx2A"/>
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </contents>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ggDenntjEeKvC-Xbutnx2A" name="view">
+        <eAnnotations xmi:id="_ggDen3tjEeKvC-Xbutnx2A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Ru3fwFb7EeG7eej248Qh-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ggDeoHtjEeKvC-Xbutnx2A" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ggDeontjEeKvC-Xbutnx2A" name="base_Dependency" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Dependency"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ggDepHtjEeKvC-Xbutnx2A" name="name" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ggDepntjEeKvC-Xbutnx2A" name="permission" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ggDeqHtjEeKvC-Xbutnx2A" name="template_name" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ggDeqntjEeKvC-Xbutnx2A" name="layer" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ggDerHtjEeKvC-Xbutnx2A" name="gsprofile">
+        <eAnnotations xmi:id="_ggDerXtjEeKvC-Xbutnx2A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_UtuIIEwnEeGTE4gBrh7aXw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ggDerntjEeKvC-Xbutnx2A" name="base_Package" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_ggDesHtjEeKvC-Xbutnx2A" name="create_setuphandler_py" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ggDesntjEeKvC-Xbutnx2A" name="referenceable">
+        <eAnnotations xmi:id="_ggDes3tjEeKvC-Xbutnx2A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_eFET0I3XEeGdVsfBtavtkg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ggDetHtjEeKvC-Xbutnx2A" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="_ZM-NMETWEeKw_KtXikBFrg" name="plone" nsURI="http:///schemas/plone/_ZM7J4ETWEeKw_KtXikBFrg/14" nsPrefix="plone">
       <eAnnotations xmi:id="_ZNTkYETWEeKw_KtXikBFrg" source="PapyrusVersion">
         <details xmi:id="_ZNULcETWEeKw_KtXikBFrg" key="Version" value="0.0.10"/>
