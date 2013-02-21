@@ -242,5 +242,6 @@ def gsprofilesetuphandlers(self, source, target):
     xml.params = {
         'eggid' : path,
         'handler' : path,
-        'handlertitle' : 'Installer for ' + dotted_path(egg)
+        'handlertitle' : 'Installer for ' + dotted_path(egg),
+        'version': '1', # XXX: extend profile with import step version.
     }
