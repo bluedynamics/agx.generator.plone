@@ -6,8 +6,7 @@
     id="<dtml-var "eggid" >"
     handler="<dtml-var "handler">"
     title="<dtml-var "handlertitle">"
-    description="you can install <dtml-var "handlertitle"> directly from quickinstaller ",
-    version="<dtml-var "_.get('version','1.0')">"
+    version="<dtml-var "version">"
  />
 
 <!-- ##code-section ADDITIONALSTEPS -->
