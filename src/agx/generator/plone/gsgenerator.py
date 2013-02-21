@@ -244,4 +244,5 @@ def gsprofilesetuphandlers(self, source, target):
         'handler' : path,
         'handlertitle' : 'Installer for ' + dotted_path(egg),
         'version': '1', # XXX: extend profile with import step version.
+        'description':'',# XXX: extend profile with import step version.
     }
