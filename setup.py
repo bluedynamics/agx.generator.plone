@@ -1,24 +1,30 @@
-# 
+import os
+from setuptools import (
+    setup,
+    find_packages,
+)
 
-from setuptools import setup, find_packages
-import sys, os
 
-version = "1.0"
-shortdesc =""
+version = "1.0a1"
+shortdesc = "AGX generator for plone products"
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.rst')).read()
+
 
 setup(name="agx.generator.plone",
       version=version,
       description=shortdesc,
       long_description=longdesc,
       classifiers=[
-          "",
+          'Development Status :: 3 - Alpha',
+          'License :: OSI Approved :: GNU General Public License (GPL)',
+          'Programming Language :: Python',
       ],
-      keywords="",
-      author="",
-      author_email="",
-      url="",
-      license="",
+      keywords="AGX, Code Generation",
+      author="BlueDynamics Alliance",
+      author_email="dev@bluedynamics.com",
+      url="http://github.com/bluedynamics/agx.generator.plone",
+      license="GNU General Public Licence",
       packages=find_packages("src"),
       package_dir={"": "src"},
       namespace_packages=["agx", "agx.generator"],
