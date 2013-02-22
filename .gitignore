@@ -2,3 +2,4 @@
 *.pyo
 src/agx.generator.plone.egg-info/
 src/agx/generator/plone/testing/data/agx.generator.plone-sample/
+dist/
