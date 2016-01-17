@@ -106,9 +106,10 @@ def plonebrowserview(self, source, target):
             bptgv = TaggedValues(bp)
             bptok = token(str(bp.supplier.uuid), False)
             _for = bptok.fullpath
-
+ 
+            print 'xminame:',bp,bp.xminame
             # consider uuid as an unset name
-            if re.match('[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}', bp.xminame):
+            if bp.xminame is None or re.match('[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}', bp.xminame):
                 bpname = None
             else:
                 bpname = bp.xminame.lower()
